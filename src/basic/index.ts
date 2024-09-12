@@ -48,9 +48,9 @@ function toFullOption(options: RandomPartOptions): RandomPartSetOptions {
       };
 
       if (ifLengthType(rangeOrLength)) {
-        result.length = rangeOrLength;
+        result.length = rangeOrLength as RandomLength;
       } else {
-        result.range = rangeOrLength;
+        result.range = rangeOrLength as string;
       }
 
       return result;
@@ -59,7 +59,7 @@ function toFullOption(options: RandomPartOptions): RandomPartSetOptions {
       return {
         set: options[0],
         range: options[1],
-        length: options[2],
+        length: options[2] as RandomLength,
       };
     }
 
