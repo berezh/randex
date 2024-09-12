@@ -5,7 +5,7 @@ describe("randomFileName", () => {
   it("simple", () => {
     for (let i = 0; i < 100; i++) {
       const email = randomFileName();
-      expect(TestUtil.isUsernameValid(email)).toBeTruthy();
+      expect(TestUtil.isFileNameValid(email)).toBeTruthy();
     }
   });
 });
