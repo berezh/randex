@@ -1,7 +1,6 @@
 import { random } from "../basic";
 import { TestUtil } from "./test-util";
 import { RandomLength, RandomSet } from "../interfaces";
-import { randomFileName } from "../custom/filename";
 
 describe("random params", () => {
   it("array 1", () => {
