@@ -1,7 +1,7 @@
-# random-thing
+# randex
 
-<a href="https://www.npmjs.com/package/random-thing">
-    <img src="https://nodei.co/npm/random-thing.png?mini=true">
+<a href="https://www.npmjs.com/package/randex">
+    <img src="https://nodei.co/npm/randex.png?mini=true">
 </a>
 
 TypeScript library for random thing like string, username, email, name, etc.
@@ -11,7 +11,7 @@ TypeScript library for random thing like string, username, email, name, etc.
 Installation:
 
 ```js
-npm i random-thing
+npm i randex
 ```
 
 - [`random` function](#random-function)
@@ -27,7 +27,7 @@ npm i random-thing
 Basic function for construct random thing.
 
 ```ts
-import { random } from 'random-thing';
+import { random } from 'randex';
 
 random(
     {
@@ -57,7 +57,7 @@ Options:
 Randoms file name.
 
 ```ts
-import { randomFileName } from 'random-thing';
+import { randomFileName } from 'randex';
 
 randomFileName(
     {
@@ -78,7 +78,7 @@ random([["alphabet", "number"], "_.", [5, 10]]) + random(["alphabet", "number"])
 Randoms username.
 
 ```ts
-import { randomUsername } from 'random-thing';
+import { randomUsername } from 'randex';
 
 
 randomUsername();
@@ -99,7 +99,7 @@ random("alphabetLower", [
 Randoms username.
 
 ```ts
-import { randomEmail } from 'random-thing';
+import { randomEmail } from 'randex';
 
 
 randomEmail();
@@ -121,7 +121,7 @@ random("alphabetLower", [["alphabetLower", "number"], 10], "alphabetLower") +
 Randoms a name of the person, city, place, restaurant, ect.
 
 ```ts
-import { randomName } from 'random-thing';
+import { randomName } from 'randex';
 
 
 randomName();
@@ -139,7 +139,7 @@ random("alphabetUpper", ["alphabetLower", [1, 10]]);
 Randoms a full name of the person.
 
 ```ts
-import { randomFullName } from 'random-thing';
+import { randomFullName } from 'randex';
 
 
 randomFullName();
