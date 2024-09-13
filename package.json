@@ -1,6 +1,6 @@
 {
   "name": "randex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,7 +8,8 @@
     "test": "jest --config jest.config.js",
     "build": "tsc",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "v": "npm --no-git-tag-version version minor"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,11 @@
     "reflect-metadata": "^0.2.1"
   },
   "keywords": [
-    "random","random filename", "random email", "random username", "random full name", "random string"
+    "random",
+    "random filename",
+    "random email",
+    "random username",
+    "random full name",
+    "random string"
   ]
 }

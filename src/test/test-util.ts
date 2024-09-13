@@ -78,4 +78,8 @@ export class TestUtil {
       .toLowerCase()
       .match(/^[a-z0-9_\.]{2,}$/);
   }
+
+  public static inNumberRange(value: number, range: [number, number]) {
+    return value >= range[0] && value <= range[1];
+  }
 }
