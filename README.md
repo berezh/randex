@@ -134,6 +134,11 @@ Equals to:
 random("alphabetUpper", ["alphabetLower", [1, 10]]);
 ```
 
+Options:
+| Name                     |  Type| Description|
+| ------------------------ | ---- |------------ |
+|length|`number`, `[number, number]` | Length or min and max length of chars are needed to be generated |
+
 ## randomFullName
 
 Randoms a full name of the person.
