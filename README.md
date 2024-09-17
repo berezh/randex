@@ -14,63 +14,109 @@ Installation:
 npm i randex
 ```
 
-- [`random` function](#random-function)
+Functions:
+- [random](#random)
 - [randomFileName](#randomfilename)
 - [randomUsername](#randomfilename)
 - [randomEmail](#randomfilename)
 - [randomName](#randomfilename)
 - [randomFullName](#randomfilename)
 
-
 ## `random` function
 
 Basic function for construct random thing.
 
 ```ts
-import { random } from 'randex';
+import { random } from "randex";
 
+// 3 english chars
+random({
+  set: "english",
+  length: 3,
+});
+// EFd
+
+// 3 lower english chars
+random({
+  set: ["english", "lower"],
+  length: 3,
+});
+// yhl
+
+// min 1 and max 3 english chars
+random({
+  set: "english",
+  length: [1, 3],
+});
+// eR
+
+// 3 number chars
+random({
+  set: "number",
+  length: 3,
+});
+// 643
+
+// 3 chars from custom range
+random({
+  range: "abc123",
+  length: 3,
+});
+// a21
+
+// 3 english or number chars
+random({
+  set: ["english", "number"],
+  length: 3,
+});
+
+// 4 chars: 2 english and 2 english or number
 random(
-    {
-        set: "alphabet",
-        length: 2,
-    },
-    {
-        set: ["alphabet", "number"],
-        length: 2,
-    }
+  {
+    set: "english",
+    length: 2,
+  },
+  {
+    set: ["english", "number"],
+    length: 2,
+  }
 );
-
-// gTo3
+// Kb3b
 ```
 
 Options:
-| Name                     |  Type| Description|
+| Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|set| `hex`, `symbol`, `alphabet`, `alphabetLower`, `alphabetUpper`, `number`, `binary` | Set of predefined chars|
+|set|[RandexSet](#randexset) | Defined chars|
 |range|`string`| Range or custom chars |
-|length|`number`, `[number, number]` | Length or min and max length of chars are needed to be generated |
-
-
+|length|[RandexLength](#randexlength) | Length of chars |
 
 ## randomFileName
 
 Randoms file name.
 
 ```ts
-import { randomFileName } from 'randex';
+import { randomFileName } from "randex";
 
-randomFileName(
-    {
-        extension: 'txt'
-    },
-);
+randomFileName({
+  extension: "txt",
+});
 
-// FSCOuNN.txt
+// td1TX31eOB.txt
 ```
 
-Equals to: 
+Equals to:
+
 ```ts
-random([["alphabet", "number"], "_.", [5, 10]]) + random(["alphabet", "number"]) + "." + (extension ? extension : random(["alphabetLower", [2, 5]]));
+random([["english", "number"], "_.", [5, 10]]) +
+  random(["english", "number"]) +
+  "." +
+  (extension
+    ? extension
+    : random([
+        ["english", "l"],
+        [2, 5],
+      ]));
 ```
 
 ## randomUsername
@@ -78,20 +124,23 @@ random([["alphabet", "number"], "_.", [5, 10]]) + random(["alphabet", "number"])
 Randoms username.
 
 ```ts
-import { randomUsername } from 'randex';
-
+import { randomUsername } from "randex";
 
 randomUsername();
 
 // icvv81d1j
 ```
 
-Equals to: 
+Equals to:
+
 ```ts
-random("alphabetLower", [
-    ["alphabetLower", "number"],
+random(
+  ["english", "lower"],
+  [
+    [["english", "lower"], "number"],
     [5, 10],
-  ]);
+  ]
+);
 ```
 
 ## randomEmail
@@ -99,21 +148,24 @@ random("alphabetLower", [
 Randoms username.
 
 ```ts
-import { randomEmail } from 'randex';
-
+import { randomEmail } from "randex";
 
 randomEmail();
 
-// dwrq4wu54nzj@dhvy.dtk
+// stv4ox27sevt@mqsyin.fil
 ```
 
-Equals to: 
+Equals to:
+
 ```ts
-random("alphabetLower", [["alphabetLower", "number"], 10], "alphabetLower") +
-    "@" +
-    random("alphabetLower", ["alphabetLower", "-", [0, 5]], "alphabetLower") +
-    "." +
-    random(["alphabetLower", [2, 4]]);
+random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
+  "@" +
+  random(["english", "l"], [["english", "l"], "-", [0, 5]], ["english", "l"]) +
+  "." +
+  random([
+    ["english", "l"],
+    [2, 4],
+  ]);
 ```
 
 ## randomName
@@ -121,39 +173,92 @@ random("alphabetLower", [["alphabetLower", "number"], 10], "alphabetLower") +
 Randoms a name of the person, city, place, restaurant, ect.
 
 ```ts
-import { randomName } from 'randex';
+import { randomName } from "randex";
 
-
+// default (min - 2, max - 10 chars)
 randomName();
+// Ijb
 
-// Txotsaw
+// name from french alphabet
+randomName({ alphabet: "french" });
+// Dbïœ
+
+// name with length 5 chars
+randomName({ length: 5 });
+// Okmpj
+
+// name with 2 min and 5 max chars
+randomName({ length: [2, 5] });
+// Wslg
 ```
 
-Equals to: 
+Equals to:
+
 ```ts
-random("alphabetUpper", ["alphabetLower", [1, 10]]);
+random(
+  ["english", "u"],
+  [
+    ["english", "l"],
+    [1, 10],
+  ]
+);
 ```
 
 Options:
-| Name                     |  Type| Description|
+| Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|`number`, `[number, number]` | Length or min and max length of chars are needed to be generated |
+|length|[RandexLength](#randexlength) | Length of chars |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet |
 
 ## randomFullName
 
 Randoms a full name of the person.
 
 ```ts
-import { randomFullName } from 'randex';
-
+import { randomFullName } from "randex";
 
 randomFullName();
-
 // Eqaa Bfmotnq
 ```
 
-Equals to: 
-```ts
-random("alphabetUpper", ["alphabetLower", [1, 10]]) + " " + random("alphabetUpper", ["alphabetLower", [1, 10]]);
-```
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|firstLength|[RandexLength](#randexlength) | First name length of chars |
+|secondLength|[RandexLength](#randexlength) | Second name length of chars |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet |
 
+## Types
+
+## RandexLength
+
+Possible types:
+
+`number`: strict length
+`[number, number]`: an array of min and max length.
+
+## RandexSet
+
+Possible types:
+
+`string`: an alphabet - [RandexAlphabet](#randexalphabet) or a set of chars - [RandexKit](#randexkit)
+
+`[string, string]`: the first item is - [RandexAlphabet](#randexalphabet), the second item is - [RandexCase](#randexcase)
+
+## RandexAlphabet
+
+An alphabet of chars
+
+`string` values: `english`, `french`, `spanish`, `russian`.
+
+## RandexKit
+
+A kit of chars
+
+`string` values: `hex`, `symbol`, `number`, `binary`.
+
+## RandexCase
+
+A case of alphabet
+
+`string` values: `upper`, `u`,`lower`, `l`.

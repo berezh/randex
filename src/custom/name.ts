@@ -1,11 +1,18 @@
 import { random } from "../basic";
-import { RandomLength } from "../interfaces";
+import { RandexAlphabet, RandexLength } from "../interfaces";
 
-export interface RandomNameOptions {
-  length: RandomLength;
+export interface RandexNameOptions {
+  length?: RandexLength;
+  alphabet?: RandexAlphabet;
 }
 
-function getLength(reservedChars: number, length: RandomLength | undefined, defaultLength: RandomLength): RandomLength {
+export interface RandexFullNameOptions {
+  firstLength?: RandexLength;
+  secondLength?: RandexLength;
+  alphabet?: RandexAlphabet;
+}
+
+function getLength(reservedChars: number, length: RandexLength | undefined, defaultLength: RandexLength): RandexLength {
   let result = defaultLength;
   if (typeof length === "number" && length > reservedChars) {
     result = length - reservedChars;
@@ -25,12 +32,13 @@ function getLength(reservedChars: number, length: RandomLength | undefined, defa
   return result;
 }
 
-export function randomName(options?: RandomNameOptions) {
-  const { length } = options || {};
+export function randomName(options?: RandexNameOptions) {
+  const { length, alphabet = "english" } = options || {};
   const currentLength = getLength(1, length, [1, 9]);
-  return random("alphabetUpper", ["alphabetLower", currentLength]);
+  return random([alphabet, "u"], [[alphabet, "l"], currentLength]);
 }
 
-export function randomFullName() {
-  return randomName() + " " + randomName();
+export function randomFullName(options?: RandexFullNameOptions) {
+  const { firstLength, secondLength, alphabet } = options || {};
+  return randomName({ length: firstLength, alphabet }) + " " + randomName({ length: secondLength, alphabet });
 }

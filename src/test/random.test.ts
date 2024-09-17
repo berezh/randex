@@ -1,22 +1,22 @@
 import { random } from "../basic";
 import { TestUtil } from "./test-util";
-import { RandomLength, RandomSet } from "../interfaces";
+import { RandexLength, RandexSet } from "../interfaces";
 
-function inSet(set: RandomSet, length: RandomLength = 1) {
+function inSet(set: RandexSet, length: RandexLength = 1) {
   const result = random({ set, length });
   TestUtil.testInSet(result, set, length);
 }
 
-function inRange(range: string, length: RandomLength = 1) {
+function inRange(range: string, length: RandexLength = 1) {
   const result = random({ range, length });
   TestUtil.testInRange(result, range, length);
 }
 
 describe("random", () => {
   it("set", () => {
-    inSet("alphabet", 3);
-    inSet("alphabetLower", 3);
-    inSet("alphabetUpper", 3);
+    inSet("english", 3);
+    inSet(["english", "l"], 3);
+    inSet(["english", "u"], 3);
     inSet("hex", 3);
     inSet("symbol", 3);
     inSet("number", 3);
@@ -29,9 +29,35 @@ describe("random", () => {
   });
 
   it("length: alphabet", () => {
-    inSet("alphabet", 0);
-    inSet("alphabet", [0, 0]);
-    inSet("alphabet", [1, 3]);
-    inSet("alphabet", [0, 1]);
+    inSet("english", 0);
+    inSet("english", [0, 0]);
+    inSet("english", [1, 3]);
+    inSet("english", [0, 1]);
+  });
+
+  it("alphabet: upper", () => {
+    for (let i = 0; i < 100; i++) {
+      let value = random(["english", "u"]);
+      expect(TestUtil.isUpperCharValid(value, 1)).toBeTruthy();
+
+      value = random([
+        ["english", "u"],
+        [1, 3],
+      ]);
+      expect(TestUtil.isUpperCharValid(value, [1, 3])).toBeTruthy();
+    }
+  });
+
+  it("alphabet: lower", () => {
+    for (let i = 0; i < 100; i++) {
+      let value = random(["english", "l"]);
+      expect(TestUtil.isLowerCharValid(value, 1)).toBeTruthy();
+
+      value = random([
+        ["english", "lower"],
+        [1, 3],
+      ]);
+      expect(TestUtil.isLowerCharValid(value, [1, 3])).toBeTruthy();
+    }
   });
 });

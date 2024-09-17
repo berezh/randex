@@ -1,16 +1,17 @@
-import { RandomPartSetOptions, RandomPartOptions, RandomSet, RandomLength } from "../interfaces";
+import { RandexContentOptions, RandexLength, RandexContentSetOptions, RandexContentRangeOptions } from "../interfaces";
 import { RtSetUtil } from "./set";
+import { RandexTypeParser } from "./type";
 
-interface RandomStringParams {
+interface RandomRangeOptions {
   range: string;
-  length: RandomLength;
+  length: RandexLength;
 }
 
 function randomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
-function randomString(params: RandomStringParams) {
+function randomString(params: RandomRangeOptions) {
   const { length, range } = params;
   let result = "";
 
@@ -30,49 +31,37 @@ function randomString(params: RandomStringParams) {
   return result;
 }
 
-function ifLengthType(value: string | number | number[]) {
-  return typeof value === "number" || Array.isArray(value);
-}
-
-function toFullOption(options: RandomPartOptions): RandomPartSetOptions {
-  if (typeof options === "string") {
+function toContent(options: RandexContentOptions): RandexContentSetOptions | RandexContentRangeOptions {
+  if (RandexTypeParser.isSet(options)) {
     return {
       set: options,
-      length: 1,
     };
-  } else if (Array.isArray(options)) {
+  } else if (RandexTypeParser.isPartArray(options)) {
     if (options.length === 2) {
       const [set, rangeOrLength] = options;
-      const result: RandomPartSetOptions = {
-        set,
-      };
-
-      if (ifLengthType(rangeOrLength)) {
-        result.length = rangeOrLength as RandomLength;
-      } else {
-        result.range = rangeOrLength as string;
-      }
-
-      return result;
-    }
-    if (options.length === 3 && ifLengthType(options[2])) {
+      return RandexTypeParser.isLength(rangeOrLength)
+        ? {
+            set,
+            length: rangeOrLength,
+          }
+        : {
+            set,
+            range: rangeOrLength,
+          };
+    } else if (options.length === 3) {
+      const [set, range, length] = options;
       return {
-        set: options[0],
-        range: options[1],
-        length: options[2] as RandomLength,
+        set,
+        range,
+        length,
       };
     }
-
-    return {
-      set: options as RandomSet,
-      length: 1,
-    };
   }
 
-  return options as RandomPartSetOptions;
+  return options as RandexContentSetOptions | RandexContentRangeOptions;
 }
 
-function toParam(options: RandomPartSetOptions): RandomStringParams {
+function toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOptions): RandomRangeOptions {
   let fullRange = "";
   const { set, range, length = 1 } = options;
 
@@ -81,7 +70,7 @@ function toParam(options: RandomPartSetOptions): RandomStringParams {
   }
 
   if (set) {
-    fullRange += Array.isArray(set) ? set.map(x => RtSetUtil.toRange(x)).join("") : RtSetUtil.toRange(set);
+    fullRange += RtSetUtil.toRange(set);
   }
 
   return {
@@ -90,11 +79,11 @@ function toParam(options: RandomPartSetOptions): RandomStringParams {
   };
 }
 
-export function random(...options: RandomPartOptions[]) {
+export function random(...options: RandexContentOptions[]) {
   let result = "";
   for (const option of options) {
-    const o = toFullOption(option);
-    const p = toParam(o);
+    const content = toContent(option);
+    const p = toRangeOptions(content);
     result += randomString(p);
   }
 

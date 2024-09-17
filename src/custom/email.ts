@@ -2,10 +2,13 @@ import { random } from "../basic";
 
 export function randomEmail() {
   return (
-    random("alphabetLower", [["alphabetLower", "number"], 10], "alphabetLower") +
+    random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
     "@" +
-    random("alphabetLower", ["alphabetLower", "-", [0, 5]], "alphabetLower") +
+    random(["english", "l"], [["english", "l"], "-", [0, 5]], ["english", "l"]) +
     "." +
-    random(["alphabetLower", [2, 4]])
+    random([
+      ["english", "l"],
+      [2, 4],
+    ])
   );
 }

@@ -1,8 +1,8 @@
 import { RtSetUtil } from "../basic/set";
-import { RandomLength, RandomSet } from "../interfaces";
+import { RandexLength, RandexSet } from "../interfaces";
 
 export class TestUtil {
-  public static testIn(value: string, length: RandomLength = 1, action: () => void) {
+  public static testIn(value: string, length: RandexLength = 1, action: () => void) {
     if (typeof length === "number") {
       expect(value.length).toBe(length);
     } else if (Array.isArray(length)) {
@@ -15,19 +15,19 @@ export class TestUtil {
     }
   }
 
-  public static testInSet(value: string, set: RandomSet, length: RandomLength = 1) {
+  public static testInSet(value: string, set: RandexSet, length: RandexLength = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inSet(value, set)).toBeTruthy();
     });
   }
 
-  public static testInRange(value: string, range: string, length: RandomLength = 1) {
+  public static testInRange(value: string, range: string, length: RandexLength = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inRange(value, range)).toBeTruthy();
     });
   }
 
-  public static testInBoth(value: string, set: RandomSet, range: string, length: RandomLength = 1) {
+  public static testInBoth(value: string, set: RandexSet, range: string, length: RandexLength = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inBoth(value, set, range)).toBeTruthy();
     });
@@ -43,12 +43,12 @@ export class TestUtil {
     return value.length > 0;
   }
 
-  public static inSet(value: string, set: RandomSet) {
+  public static inSet(value: string, set: RandexSet) {
     const range = RtSetUtil.toRange(set);
     return TestUtil.inRange(value, range);
   }
 
-  public static inBoth(value: string, set: RandomSet, range: string) {
+  public static inBoth(value: string, set: RandexSet, range: string) {
     const fullRange = RtSetUtil.toRange(set) + range;
     return TestUtil.inRange(value, fullRange);
   }
@@ -67,6 +67,16 @@ export class TestUtil {
 
   public static isNameValid(email: string) {
     return String(email).match(/^[A-Z][a-z]{1,}$/);
+  }
+
+  public static isUpperCharValid(value: string, length: RandexLength = 1) {
+    const l = Array.isArray(length) ? `${length[0]},${length[1]}` : length;
+    return String(value).match(new RegExp(`\^[A-Z]\{${l}\}\$`));
+  }
+
+  public static isLowerCharValid(value: string, length: RandexLength = 1) {
+    const l = Array.isArray(length) ? `${length[0]},${length[1]}` : length;
+    return String(value).match(new RegExp(`^[a-z]{${l}}$`));
   }
 
   public static isFullNameValid(email: string) {

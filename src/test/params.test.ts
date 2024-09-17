@@ -1,10 +1,10 @@
 import { random } from "../basic";
 import { TestUtil } from "./test-util";
-import { RandomLength, RandomSet } from "../interfaces";
+import { RandexLength, RandexSet } from "../interfaces";
 
 describe("random params", () => {
   it("array 1", () => {
-    const set: RandomSet = "alphabetLower";
+    const set: RandexSet = "english";
 
     const result1 = random({ set });
     const result2 = random(set);
@@ -14,7 +14,7 @@ describe("random params", () => {
   });
 
   it("single: array", () => {
-    const set: RandomSet = ["number", "alphabetLower"];
+    const set: RandexSet = ["number", "english"];
 
     const result1 = random({ set });
     const result2 = random(set);
@@ -24,8 +24,8 @@ describe("random params", () => {
   });
 
   it("single: array, length", () => {
-    const set: RandomSet = ["number", "alphabetLower"];
-    const length: RandomLength = 3;
+    const set: RandexSet = ["number", "english"];
+    const length: RandexLength = 3;
 
     const result1 = random({ set, length });
     const result2 = random([set, length]);
@@ -35,8 +35,8 @@ describe("random params", () => {
   });
 
   it("single: array, length as array", () => {
-    const set: RandomSet = ["number", "alphabetLower"];
-    const length: RandomLength = [1, 4];
+    const set: RandexSet = ["number", "english"];
+    const length: RandexLength = [1, 4];
 
     const result1 = random({ set, length });
     const result2 = random([set, length]);
@@ -46,7 +46,7 @@ describe("random params", () => {
   });
 
   it("array 2 (range)", () => {
-    const set: RandomSet = "number";
+    const set: RandexSet = "number";
     const range = "abcdefghijklmnopqrstuvwxyz";
 
     const result1 = random({ set, range });
@@ -57,8 +57,8 @@ describe("random params", () => {
   });
 
   it("array 2 (length)", () => {
-    const set: RandomSet = "alphabet";
-    const length: RandomLength = 3;
+    const set: RandexSet = "english";
+    const length: RandexLength = 3;
     const result1 = random({ set, length });
     const result2 = random([set, length]);
     TestUtil.testInSet(result1, set, length);
@@ -66,9 +66,9 @@ describe("random params", () => {
   });
 
   it("array 3", () => {
-    const set: RandomSet = "number";
+    const set: RandexSet = "number";
     const range = "abcdefghijklmnopqrstuvwxyz";
-    const length: RandomLength = 3;
+    const length: RandexLength = 3;
 
     const result1 = random({ set, range, length });
     const result2 = random([set, range, length]);
