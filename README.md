@@ -17,12 +17,12 @@ npm i randex
 Functions:
 - [random](#random)
 - [randomFileName](#randomfilename)
-- [randomUsername](#randomfilename)
-- [randomEmail](#randomfilename)
-- [randomName](#randomfilename)
-- [randomFullName](#randomfilename)
+- [randomUsername](#randomusername)
+- [randomEmail](#randomemail)
+- [randomName](#randomname)
+- [randomFullName](#randomfullname)
 
-## `random` function
+## random
 
 Basic function for construct random thing.
 
@@ -235,6 +235,7 @@ Options:
 Possible types:
 
 `number`: strict length
+
 `[number, number]`: an array of min and max length.
 
 ## RandexSet
