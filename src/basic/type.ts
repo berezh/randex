@@ -15,7 +15,13 @@ export class RandexTypeParser {
   }
 
   public static inAlphabet(value: string): value is RandexAlphabet {
-    return RandexTypeParser.inLiteral<RandexAlphabet>(value, "english", "french", "spanish", "german", "russian");
+    return RandexTypeParser.inLiteral<RandexAlphabet>(
+      value,
+      "english",
+      "french",
+      "spanish", // "german",
+      "russian"
+    );
   }
 
   public static inSet(value: string): value is RandexSingleSet {

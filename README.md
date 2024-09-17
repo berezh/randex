@@ -15,6 +15,7 @@ npm i randex
 ```
 
 Functions:
+
 - [random](#random)
 - [randomFileName](#randomfilename)
 - [randomUsername](#randomusername)
@@ -135,9 +136,9 @@ Equals to:
 
 ```ts
 random(
-  ["english", "lower"],
+  ["english", "l"],
   [
-    [["english", "lower"], "number"],
+    [["english", "l"], "number"],
     [5, 10],
   ]
 );

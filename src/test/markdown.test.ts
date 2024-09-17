@@ -1,5 +1,5 @@
 import { random } from "../basic";
-import { randomEmail, randomFileName, randomFullName, randomName } from "../custom";
+import { randomEmail, randomFileName, randomFullName, randomName, randomUsername } from "../custom";
 
 describe("markdown", () => {
   it("random", () => {
@@ -57,6 +57,12 @@ describe("markdown", () => {
     const value = randomFileName({
       extension: "txt",
     });
+
+    expect(value).toBeTruthy();
+  });
+
+  it("randomUsername", () => {
+    const value = randomUsername();
 
     expect(value).toBeTruthy();
   });

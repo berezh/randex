@@ -25,7 +25,9 @@ function randomString(params: RandomRangeOptions) {
 
   for (let i = 0; i < currentLength; i++) {
     const index = randomInt(range.length - 1);
-    result += range[index];
+    if (range.length >= index || range.length <= index) {
+      result += range[index];
+    }
   }
 
   return result;
