@@ -1,5 +1,5 @@
 import { RandexContentOptions, RandexLength, RandexContentSetOptions, RandexContentRangeOptions } from "../interfaces";
-import { RtSetUtil } from "./set";
+import { RandexSetUtil } from "./set";
 import { RandexTypeParser } from "./type";
 
 interface RandomRangeOptions {
@@ -72,7 +72,7 @@ function toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOpt
   }
 
   if (set) {
-    fullRange += RtSetUtil.toRange(set);
+    fullRange += RandexSetUtil.toRange(set);
   }
 
   return {

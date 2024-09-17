@@ -1,4 +1,4 @@
-import { RtSetUtil } from "../basic/set";
+import { RandexSetUtil } from "../basic/set";
 import { RandexLength, RandexSet } from "../interfaces";
 
 export class TestUtil {
@@ -44,12 +44,12 @@ export class TestUtil {
   }
 
   public static inSet(value: string, set: RandexSet) {
-    const range = RtSetUtil.toRange(set);
+    const range = RandexSetUtil.toRange(set);
     return TestUtil.inRange(value, range);
   }
 
   public static inBoth(value: string, set: RandexSet, range: string) {
-    const fullRange = RtSetUtil.toRange(set) + range;
+    const fullRange = RandexSetUtil.toRange(set) + range;
     return TestUtil.inRange(value, fullRange);
   }
 

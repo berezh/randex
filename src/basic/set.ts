@@ -1,4 +1,4 @@
-import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet } from "../interfaces";
+import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet, RandexLength } from "../interfaces";
 import { RandexTypeParser } from "./type";
 
 const hex = "0123456789ABCDEFabcdef";
@@ -15,12 +15,12 @@ const spanishUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZÑ";
 const russianLower = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 const russianUpper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
-export class RtSetUtil {
+export class RandexSetUtil {
   private static toSingleRange(itemSet: RandexItemSet) {
     if (Array.isArray(itemSet)) {
-      return RtSetUtil.toAlphabetRange(itemSet);
+      return RandexSetUtil.toAlphabetRange(itemSet);
     } else if (RandexTypeParser.inAlphabet(itemSet)) {
-      return RtSetUtil.toAlphabetRange([itemSet, "default"]);
+      return RandexSetUtil.toAlphabetRange([itemSet, "default"]);
     }
 
     switch (itemSet) {
@@ -56,24 +56,44 @@ export class RtSetUtil {
     const [alphabet, aCase] = set;
     switch (alphabet) {
       case "english":
-        return RtSetUtil.toAlphabetCase(aCase, englishLower, englishUpper);
+        return RandexSetUtil.toAlphabetCase(aCase, englishLower, englishUpper);
       case "french":
-        return RtSetUtil.toAlphabetCase(aCase, frenchLower, frenchUpper);
+        return RandexSetUtil.toAlphabetCase(aCase, frenchLower, frenchUpper);
       case "spanish":
-        return RtSetUtil.toAlphabetCase(aCase, spanishLower, spanishUpper);
+        return RandexSetUtil.toAlphabetCase(aCase, spanishLower, spanishUpper);
       // case "german":
       //   return RtSetUtil.toAlphabetCase(aCase, englishLower, englishUpper);
       case "russian":
-        return RtSetUtil.toAlphabetCase(aCase, russianLower, russianUpper);
+        return RandexSetUtil.toAlphabetCase(aCase, russianLower, russianUpper);
     }
   }
 
   public static toRange(set: RandexSet) {
     let result = "";
     if (RandexTypeParser.isSetSingle(set)) {
-      result += RtSetUtil.toSingleRange(set);
+      result += RandexSetUtil.toSingleRange(set);
     } else if (RandexTypeParser.isSet(set)) {
-      result += set.map(RtSetUtil.toSingleRange).join("");
+      result += set.map(RandexSetUtil.toSingleRange).join("");
+    }
+
+    return result;
+  }
+
+  public static getLength(reservedChars: number, length: RandexLength | undefined, defaultLength: RandexLength): RandexLength {
+    let result = defaultLength;
+    if (typeof length === "number" && length > reservedChars) {
+      result = length - reservedChars;
+    } else if (Array.isArray(length)) {
+      const [min, max] = length;
+      const dMin = min - reservedChars;
+      const dMax = max - reservedChars;
+      if (dMin >= 0 && dMax >= 0) {
+        if (dMin < dMax) {
+          return [dMin, dMax];
+        } else if (dMin === dMax) {
+          return dMin;
+        }
+      }
     }
 
     return result;

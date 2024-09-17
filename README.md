@@ -127,9 +127,18 @@ Randoms username.
 ```ts
 import { randomUsername } from "randex";
 
+// default (min - 6, max - 10 chars)
 randomUsername();
-
 // icvv81d1j
+
+// with length 5 chars
+randomUsername({ length: 5 });
+// okmle
+
+// with 2 min and 5 max chars
+randomName({ length: [2, 5] });
+// lkhs
+
 ```
 
 Equals to:
@@ -144,6 +153,12 @@ random(
 );
 ```
 
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|length|[RandexLength](#randexlength) | Length of chars |
+
+
 ## randomEmail
 
 Randoms username.
@@ -151,9 +166,10 @@ Randoms username.
 ```ts
 import { randomEmail } from "randex";
 
-randomEmail();
 
+randomEmail();
 // stv4ox27sevt@mqsyin.fil
+
 ```
 
 Equals to:
@@ -168,6 +184,7 @@ random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
     [2, 4],
   ]);
 ```
+
 
 ## randomName
 
@@ -184,11 +201,11 @@ randomName();
 randomName({ alphabet: "french" });
 // Dbïœ
 
-// name with length 5 chars
+// with length 5 chars
 randomName({ length: 5 });
 // Okmpj
 
-// name with 2 min and 5 max chars
+// with 2 min and 5 max chars
 randomName({ length: [2, 5] });
 // Wslg
 ```

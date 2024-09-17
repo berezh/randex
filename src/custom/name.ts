@@ -1,4 +1,5 @@
 import { random } from "../basic";
+import { RandexSetUtil } from "../basic/set";
 import { RandexAlphabet, RandexLength } from "../interfaces";
 
 export interface RandexNameOptions {
@@ -12,29 +13,9 @@ export interface RandexFullNameOptions {
   alphabet?: RandexAlphabet;
 }
 
-function getLength(reservedChars: number, length: RandexLength | undefined, defaultLength: RandexLength): RandexLength {
-  let result = defaultLength;
-  if (typeof length === "number" && length > reservedChars) {
-    result = length - reservedChars;
-  } else if (Array.isArray(length)) {
-    const [min, max] = length;
-    const dMin = min - reservedChars;
-    const dMax = max - reservedChars;
-    if (dMin >= 0 && dMax >= 0) {
-      if (dMin < dMax) {
-        return [dMin, dMax];
-      } else if (dMin === dMax) {
-        return dMin;
-      }
-    }
-  }
-
-  return result;
-}
-
 export function randomName(options?: RandexNameOptions) {
   const { length, alphabet = "english" } = options || {};
-  const currentLength = getLength(1, length, [1, 9]);
+  const currentLength = RandexSetUtil.getLength(1, length, [1, 9]);
   return random([alphabet, "u"], [[alphabet, "l"], currentLength]);
 }
 
