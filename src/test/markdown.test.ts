@@ -8,38 +8,48 @@ describe("markdown", () => {
       length: 3,
     });
     expect(value.length).toBe(3);
-
+    value = random(["english", 3]);
+    expect(value.length).toBe(3);
+    //
     value = random({
       set: ["english", "lower"],
       length: 3,
     });
     expect(value.length).toBe(3);
-
+    value = random([["english", "lower"], 3]);
+    expect(value.length).toBe(3);
+    //
     value = random({
       set: "english",
       length: [1, 3],
     });
     expect(value.length).toBeLessThanOrEqual(3);
-
+    value = random(["english", [1, 3]]);
+    expect(value.length).toBeLessThanOrEqual(3);
+    //
     value = random({
       set: "number",
       length: 3,
     });
     expect(value.length).toBe(3);
-
+    value = random(["number", 3]);
+    expect(value.length).toBe(3);
+    //
     value = random({
       range: "abc123",
       length: 3,
     });
     expect(value.length).toBe(3);
 
+    //
     value = random({
       set: ["english", "number"],
       length: 3,
     });
-
     expect(value.length).toBe(3);
-
+    value = random([["english", "number"], 3]);
+    expect(value.length).toBe(3);
+    //
     value = random(
       {
         set: "english",
@@ -50,6 +60,8 @@ describe("markdown", () => {
         length: 2,
       }
     );
+    expect(value.length).toBe(4);
+    value = random(["english", 2], [["english", "number"], 2]);
     expect(value.length).toBe(4);
   });
 

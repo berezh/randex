@@ -35,6 +35,13 @@ describe("random", () => {
     inSet("english", [0, 1]);
   });
 
+  it("length: alphabet", () => {
+    let value = random("english");
+    expect(value.length).toBe(1);
+    value = random(["english", "l"]);
+    expect(value.length).toBe(1);
+  });
+
   it("alphabet: upper", () => {
     for (let i = 0; i < 100; i++) {
       let value = random(["english", "u"]);

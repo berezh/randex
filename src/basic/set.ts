@@ -81,6 +81,7 @@ export class RandexSetUtil {
 
   public static getLength(reservedChars: number, length: RandexLength | undefined, defaultLength: RandexLength): RandexLength {
     let result = defaultLength;
+
     if (typeof length === "number" && length > reservedChars) {
       result = length - reservedChars;
     } else if (Array.isArray(length)) {

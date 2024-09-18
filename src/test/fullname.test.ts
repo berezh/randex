@@ -1,4 +1,4 @@
-import { randomFullName } from "../custom/name";
+import { randomFullName } from "../custom";
 import { TestUtil } from "./test-util";
 
 describe("randomFullName", () => {

@@ -9,14 +9,27 @@ describe("randomName", () => {
     }
   });
 
-  it("options", () => {
-    const value1 = randomName({ length: 5 });
-    expect(value1.length).toBe(5);
+  it("options: length", () => {
+    let value = randomName({ length: 5 });
+    expect(value.length).toBe(5);
+    value = randomName(5);
+    expect(value.length).toBe(5);
+    //
+    value = randomName({ length: [5, 5] });
+    expect(value.length).toBe(5);
+    value = randomName([5, 5]);
+    expect(value.length).toBe(5);
+    //
+    value = randomName({ length: [1, 5] });
+    expect(TestUtil.inNumberRange(value.length, [1, 5])).toBeTruthy();
+    value = randomName([1, 5]);
+    expect(TestUtil.inNumberRange(value.length, [1, 5])).toBeTruthy();
+  });
 
-    const value2 = randomName({ length: [5, 5] });
-    expect(value2.length).toBe(5);
-
-    const value3 = randomName({ length: [1, 5] });
-    expect(TestUtil.inNumberRange(value3.length, [1, 5])).toBeTruthy();
+  it("options: alphabet", () => {
+    let value = randomName({ alphabet: "russian", length: 5 });
+    expect(value.length).toBe(5);
+    value = randomName("french", 10);
+    expect(value.length).toBe(10);
   });
 });

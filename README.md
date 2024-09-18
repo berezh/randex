@@ -23,6 +23,11 @@ Functions:
 - [randomName](#randomname)
 - [randomFullName](#randomfullname)
 
+Deeps:
+
+- [Customization](#customization)
+- [Types](#types)
+
 ## random
 
 Basic function for construct random thing.
@@ -35,6 +40,8 @@ random({
   set: "english",
   length: 3,
 });
+// or short:
+random(["english", 3]);
 // EFd
 
 // 3 lower english chars
@@ -42,6 +49,8 @@ random({
   set: ["english", "lower"],
   length: 3,
 });
+// or short:
+random([["english", "lower"], 3]);
 // yhl
 
 // min 1 and max 3 english chars
@@ -49,6 +58,8 @@ random({
   set: "english",
   length: [1, 3],
 });
+// or short:
+random(["english", [1, 3]]);
 // eR
 
 // 3 number chars
@@ -56,6 +67,8 @@ random({
   set: "number",
   length: 3,
 });
+// or short:
+random(["number", 3]);
 // 643
 
 // 3 chars from custom range
@@ -70,6 +83,9 @@ random({
   set: ["english", "number"],
   length: 3,
 });
+// or short:
+random([["english", "number"], 3]);
+// x4d
 
 // 4 chars: 2 english and 2 english or number
 random(
@@ -82,6 +98,8 @@ random(
     length: 2,
   }
 );
+// or short:
+random(["english", 2], [["english", "number"], 2]);
 // Kb3b
 ```
 
@@ -106,20 +124,6 @@ randomFileName({
 // td1TX31eOB.txt
 ```
 
-Equals to:
-
-```ts
-random([["english", "number"], "_.", [5, 10]]) +
-  random(["english", "number"]) +
-  "." +
-  (extension
-    ? extension
-    : random([
-        ["english", "l"],
-        [2, 5],
-      ]));
-```
-
 ## randomUsername
 
 Randoms username.
@@ -127,21 +131,119 @@ Randoms username.
 ```ts
 import { randomUsername } from "randex";
 
-// default (min - 6, max - 10 chars)
+// default
 randomUsername();
 // icvv81d1j
 
 // with length 5 chars
 randomUsername({ length: 5 });
+// or short:
+randomUsername(5);
 // okmle
 
 // with 2 min and 5 max chars
 randomName({ length: [2, 5] });
+// or short:
+randomUsername([2, 5]);
 // lkhs
-
 ```
 
-Equals to:
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|length|[RandexLength](#randexlength) | Length of chars. Default: min - 6, max - 10 chars. |
+
+## randomEmail
+
+Randoms an email.
+
+```ts
+import { randomEmail } from "randex";
+
+randomEmail();
+// stv4ox27sevt@mqsyin.fil
+```
+
+## randomName
+
+Randoms a name of the person, city, place, restaurant, ect.
+
+```ts
+import { randomName } from "randex";
+
+// default
+randomName();
+// Ijb
+
+// with length 5 chars
+randomName({ length: 5 });
+// or short:
+randomName(5);
+// Okmpj
+
+// with 2 min and 5 max chars
+randomName({ length: [2, 5] });
+// or short:
+randomName([2, 5]);
+// Wslg
+
+// name from french alphabet
+randomName({ alphabet: "french" });
+// or short:
+randomName("french");
+// Dbïœ
+
+// name from french alphabet with length
+randomName({ alphabet: "french", length: 10 });
+// or short:
+randomName("french", 10);
+// Rsîrjhjôôw
+```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|length|[RandexLength](#randexlength) | Length of chars. Default: min - 2, max - 10 chars|
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+## randomFullName
+
+Randoms a full name of the person.
+
+```ts
+import { randomFullName } from "randex";
+
+// default
+randomFullName();
+// Eqaa Bfmotnq
+```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|firstLength|[RandexLength](#randexlength) | First name length of chars. Default: min - 2, max - 10 chars |
+|secondLength|[RandexLength](#randexlength) | Second name length of chars. Default: min - 2, max - 10 chars |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+## Customization
+
+[random](#random) function is very flexible, there are many custom functions can be created.
+
+There are examples how to create custom function for most common cases:
+
+<b>randomFileName</b>
+
+```ts
+random([["english", "number"], "_.", [5, 10]]) +
+  random(["english", "number"]) +
+  "." +
+  random([
+    ["english", "l"],
+    [2, 5],
+  ]);
+```
+
+<b>randomUsername</b>
 
 ```ts
 random(
@@ -153,26 +255,7 @@ random(
 );
 ```
 
-Options:
-| Name | Type| Description|
-| ------------------------ | ---- |------------ |
-|length|[RandexLength](#randexlength) | Length of chars |
-
-
-## randomEmail
-
-Randoms username.
-
-```ts
-import { randomEmail } from "randex";
-
-
-randomEmail();
-// stv4ox27sevt@mqsyin.fil
-
-```
-
-Equals to:
+<b>randomEmail</b>
 
 ```ts
 random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
@@ -185,32 +268,7 @@ random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
   ]);
 ```
 
-
-## randomName
-
-Randoms a name of the person, city, place, restaurant, ect.
-
-```ts
-import { randomName } from "randex";
-
-// default (min - 2, max - 10 chars)
-randomName();
-// Ijb
-
-// name from french alphabet
-randomName({ alphabet: "french" });
-// Dbïœ
-
-// with length 5 chars
-randomName({ length: 5 });
-// Okmpj
-
-// with 2 min and 5 max chars
-randomName({ length: [2, 5] });
-// Wslg
-```
-
-Equals to:
+<b>randomName</b>
 
 ```ts
 random(
@@ -222,29 +280,25 @@ random(
 );
 ```
 
-Options:
-| Name | Type| Description|
-| ------------------------ | ---- |------------ |
-|length|[RandexLength](#randexlength) | Length of chars |
-|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet |
-
-## randomFullName
-
-Randoms a full name of the person.
+<b>randomFullName</b>
 
 ```ts
-import { randomFullName } from "randex";
-
-randomFullName();
-// Eqaa Bfmotnq
+random(
+  ["english", "u"],
+  [
+    ["english", "l"],
+    [1, 10],
+  ]
+) +
+  " " +
+  random(
+    ["english", "u"],
+    [
+      ["english", "l"],
+      [1, 10],
+    ]
+  );
 ```
-
-Options:
-| Name | Type| Description|
-| ------------------------ | ---- |------------ |
-|firstLength|[RandexLength](#randexlength) | First name length of chars |
-|secondLength|[RandexLength](#randexlength) | Second name length of chars |
-|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet |
 
 ## Types
 
@@ -256,6 +310,16 @@ Possible types:
 
 `[number, number]`: an array of min and max length.
 
+Example:
+
+```ts
+random({ set: "bit", length: 5 });
+random({ set: "bit", length: [5, 10] });
+// or short:
+random(["bit", 5]);
+random(["bit", [5, 10]]);
+```
+
 ## RandexSet
 
 Possible types:
@@ -264,11 +328,31 @@ Possible types:
 
 `[string, string]`: the first item is - [RandexAlphabet](#randexalphabet), the second item is - [RandexCase](#randexcase)
 
+Example:
+
+```ts
+random({ set: "bit" });
+random({ set: "spanish" });
+random({ set: ["spanish", "lower"] });
+// or short:
+random("bit");
+random("spanish");
+random(["spanish", "l"]);
+```
+
 ## RandexAlphabet
 
 An alphabet of chars
 
 `string` values: `english`, `french`, `spanish`, `russian`.
+
+Example:
+
+```ts
+random({ set: "spanish" });
+// or short:
+random("spanish");
+```
 
 ## RandexKit
 
@@ -276,8 +360,24 @@ A kit of chars
 
 `string` values: `hex`, `symbol`, `number`, `binary`.
 
+Example:
+
+```ts
+random({ set: "hex" });
+// or short:
+random("hex");
+```
+
 ## RandexCase
 
 A case of alphabet
 
 `string` values: `upper`, `u`,`lower`, `l`.
+
+Example:
+
+```ts
+random({ set: ["spanish", "lower"] });
+// or short:
+random(["spanish", "l"]);
+```

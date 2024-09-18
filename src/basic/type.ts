@@ -6,21 +6,24 @@ export class RandexTypeParser {
     return value >= min && value <= max;
   }
 
-  private static inLiteral<T = string>(value: string, ...expects: T[]) {
-    return !!expects.find(x => x === value);
+  private static inLiteral<T = string>(value: string, ...expects: T[]): value is string {
+    return typeof value === "string" && !!expects.find(x => x === value);
   }
 
   public static inCase(value: string): value is RandexCase {
     return RandexTypeParser.inLiteral<RandexCase>(value, "default", "lower", "upper", "l", "u");
   }
 
-  public static inAlphabet(value: string): value is RandexAlphabet {
-    return RandexTypeParser.inLiteral<RandexAlphabet>(
-      value,
-      "english",
-      "french",
-      "spanish", // "german",
-      "russian"
+  public static inAlphabet(value: any): value is RandexAlphabet {
+    return (
+      typeof value === "string" &&
+      RandexTypeParser.inLiteral<RandexAlphabet>(
+        value,
+        "english",
+        "french",
+        "spanish", // "german",
+        "russian"
+      )
     );
   }
 
