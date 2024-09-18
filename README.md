@@ -147,14 +147,14 @@ randomFileName({
 });
 // or short:
 randomFileName(8, "xml");
-// JyCsuN5.D.xml
+// JyCsuN5kD.xml
 ```
 
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|fileNameLength|[RandexLength](#randexlength) | Length of file name (not including extension). Default: min - 3, max - 10 chars|
-|extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars . Default: min - 2, max - 5 chars|
+|fileNameLength|[RandexLength](#randexlength) | Length of file name (not including extension). Default: [3,10]|
+|extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars . Default: [2,5] |
 |extension| `string`| File extension. |
 
 ## randomUsername
@@ -184,7 +184,7 @@ randomUsername([2, 5]);
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|[RandexLength](#randexlength) | Length of chars. Default: min - 6, max - 10 chars. |
+|length|[RandexLength](#randexlength) | Length of chars. Default: [6,10] |
 
 ## randomEmail
 
@@ -193,9 +193,44 @@ Randoms an email.
 ```ts
 import { randomEmail } from "randex";
 
+// default
 randomEmail();
 // stv4ox27sevt@mqsyin.fil
+
+// defined prefix length
+randomEmail({
+  prefixLength: 8,
+});
+// or shot:
+randomEmail(8);
+// epzn3hbz@vu.xsp
+
+// defined prefix, low domain and hight domain length
+randomEmail({
+  prefixLength: 8,
+  lowDomainLength: 4,
+  hightDomainLength: 2,
+});
+// or shot:
+randomEmail(8, 4, 2);
+// 8p0bjoua@fcsa.gr
+
+// defined domain
+randomEmail({
+  domain: "test.com",
+});
+// or shot:
+randomEmail("test.com");
+// efnmo1r5@test.com
 ```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|prefixLength|[RandexLength](#randexlength) | Length of email prefix (chars before `@`). Default: [6, 10] |
+|hightDomainLength|[RandexLength](#randexlength) | Length of hight domain part (example: test.<b>com</b>). Default: [1,6] |
+|lowDomainLength|[RandexLength](#randexlength) | Length of low domain part (example: <b>test</b>.com). Default: [4,2] |
+|domain| `string`| Defined domain. |
 
 ## randomName
 
@@ -236,7 +271,7 @@ randomName("french", 10);
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|[RandexLength](#randexlength) | Length of chars. Default: min - 2, max - 10 chars|
+|length|[RandexLength](#randexlength) | Length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 ## randomFullName
@@ -254,8 +289,8 @@ randomFullName();
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|firstLength|[RandexLength](#randexlength) | First name length of chars. Default: min - 2, max - 10 chars |
-|secondLength|[RandexLength](#randexlength) | Second name length of chars. Default: min - 2, max - 10 chars |
+|firstLength|[RandexLength](#randexlength) | First name length of chars. Default: [2, 10] |
+|secondLength|[RandexLength](#randexlength) | Second name length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 ## Customization

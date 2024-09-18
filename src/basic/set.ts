@@ -20,7 +20,13 @@ export class RandexSetUtil {
 
   public static readonly defaultExtensionLength: RandexLength = [2, 5];
 
-  public static readonly fileNameExtraChars = "-_.";
+  public static readonly fileNameExtraChars = ""; //"-_.";
+
+  public static readonly defaultEmailPrefixLength: RandexLength = [6, 10];
+
+  public static readonly defaultHightDomainEmailLength: RandexLength = [1, 6];
+
+  public static readonly defaultLowDomainEmailLength: RandexLength = [2, 4];
 
   private static toSingleRange(itemSet: RandexItemSet) {
     if (Array.isArray(itemSet)) {

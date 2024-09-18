@@ -95,7 +95,24 @@ describe("markdown", () => {
   });
 
   it("randomEmail", () => {
-    const value = randomEmail();
+    let value = randomEmail();
+
+    value = randomEmail({
+      prefixLength: 8,
+    });
+    value = randomEmail(8);
+
+    value = randomEmail({
+      prefixLength: 8,
+      lowDomainLength: 4,
+      hightDomainLength: 2,
+    });
+    value = randomEmail(8, 4, 2);
+
+    value = randomEmail({
+      domain: "test.com",
+    });
+    value = randomEmail("test.com");
 
     expect(value).toBeTruthy();
   });
