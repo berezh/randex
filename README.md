@@ -1,10 +1,10 @@
 # randex
 
+TypeScript library to random most common things like filename, username, email, name, full name, etc.
+
 <a href="https://www.npmjs.com/package/randex">
     <img src="https://nodei.co/npm/randex.png?mini=true">
 </a>
-
-TypeScript library for random thing like string, username, email, name, etc.
 
 ## Usage
 
@@ -30,7 +30,7 @@ Deeps:
 
 ## random
 
-Basic function for construct random thing.
+Basic function to construct random things.
 
 ```ts
 import { random } from "randex";
@@ -153,8 +153,8 @@ randomFileName(8, "xml");
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|fileNameLength|[RandexLength](#randexlength) | Length of file name (not including extension). Default: [3,10]|
-|extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars . Default: [2,5] |
+|fileNameLength|[RandexLength](#randexlength) | Length of file name (not including extension). Default: [3,10] |
+|extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars. Default: [2,5] |
 |extension| `string`| File extension. |
 
 ## randomUsername
