@@ -3,9 +3,9 @@ import { TestUtil } from "./test-util";
 
 describe("randomEmail", () => {
   it("simple", () => {
-    for (let i = 0; i < 100; i++) {
+    TestUtil.loop(() => {
       const value = randomEmail();
       expect(TestUtil.isEmailValid(value)).toBeTruthy();
-    }
+    });
   });
 });

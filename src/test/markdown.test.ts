@@ -66,9 +66,24 @@ describe("markdown", () => {
   });
 
   it("randomFileName", () => {
-    const value = randomFileName({
+    let value = randomFileName();
+
+    value = randomFileName({
       extension: "txt",
     });
+    value = randomFileName("txt");
+
+    value = randomFileName({
+      fileNameLength: [7, 10],
+      extensionLength: 5,
+    });
+    value = randomFileName([7, 10], 5);
+
+    value = randomFileName({
+      fileNameLength: 8,
+      extension: "xml",
+    });
+    value = randomFileName(8, "xml");
 
     expect(value).toBeTruthy();
   });

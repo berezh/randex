@@ -16,6 +16,12 @@ const russianLower = "абвгдеёжзийклмнопрстуфхцчшщъы
 const russianUpper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
 export class RandexSetUtil {
+  public static readonly defaultFileNameLength: RandexLength = [3, 10];
+
+  public static readonly defaultExtensionLength: RandexLength = [2, 5];
+
+  public static readonly fileNameExtraChars = "-_.";
+
   private static toSingleRange(itemSet: RandexItemSet) {
     if (Array.isArray(itemSet)) {
       return RandexSetUtil.toAlphabetRange(itemSet);

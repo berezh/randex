@@ -3,10 +3,10 @@ import { TestUtil } from "./test-util";
 
 describe("randomName", () => {
   it("simple", () => {
-    for (let i = 0; i < 100; i++) {
+    TestUtil.loop(() => {
       const value = randomName();
       expect(TestUtil.isNameValid(value)).toBeTruthy();
-    }
+    });
   });
 
   it("options: length", () => {

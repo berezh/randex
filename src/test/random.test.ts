@@ -43,7 +43,7 @@ describe("random", () => {
   });
 
   it("alphabet: upper", () => {
-    for (let i = 0; i < 100; i++) {
+    TestUtil.loop(() => {
       let value = random(["english", "u"]);
       expect(TestUtil.isUpperCharValid(value, 1)).toBeTruthy();
 
@@ -52,11 +52,11 @@ describe("random", () => {
         [1, 3],
       ]);
       expect(TestUtil.isUpperCharValid(value, [1, 3])).toBeTruthy();
-    }
+    });
   });
 
   it("alphabet: lower", () => {
-    for (let i = 0; i < 100; i++) {
+    TestUtil.loop(() => {
       let value = random(["english", "l"]);
       expect(TestUtil.isLowerCharValid(value, 1)).toBeTruthy();
 
@@ -65,6 +65,6 @@ describe("random", () => {
         [1, 3],
       ]);
       expect(TestUtil.isLowerCharValid(value, [1, 3])).toBeTruthy();
-    }
+    });
   });
 });

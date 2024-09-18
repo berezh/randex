@@ -117,12 +117,45 @@ Randoms file name.
 ```ts
 import { randomFileName } from "randex";
 
+// default
 randomFileName({
   extension: "txt",
 });
-
 // td1TX31eOB.txt
+
+// defined extension
+randomFileName({
+  extension: "txt",
+});
+// or short:
+randomFileName("txt");
+// HkmOjqHC6.txt
+
+// defined file name length and extension length
+randomFileName({
+  fileNameLength: [7, 10],
+  extensionLength: 5,
+});
+// or short:
+randomFileName([7, 10], 5);
+// 1SJVkHSBjq.tejuw
+
+// defined file name length and extension
+randomFileName({
+  fileNameLength: 8,
+  extension: "xml",
+});
+// or short:
+randomFileName(8, "xml");
+// JyCsuN5.D.xml
 ```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|fileNameLength|[RandexLength](#randexlength) | Length of file name (not including extension). Default: min - 3, max - 10 chars|
+|extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars . Default: min - 2, max - 5 chars|
+|extension| `string`| File extension. |
 
 ## randomUsername
 

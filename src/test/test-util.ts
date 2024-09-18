@@ -15,9 +15,21 @@ export class TestUtil {
     }
   }
 
+  public static loop(action: (index: number) => void) {
+    for (let i = 0; i < 100; i++) {
+      action(i);
+    }
+  }
+
   public static testInSet(value: string, set: RandexSet, length: RandexLength = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inSet(value, set)).toBeTruthy();
+    });
+  }
+
+  public static testInSetRange(value: string, set: RandexSet, range: string, length: RandexLength = 1) {
+    TestUtil.testIn(value, length, () => {
+      expect(TestUtil.inSet(value, set, range)).toBeTruthy();
     });
   }
 
@@ -43,9 +55,9 @@ export class TestUtil {
     return value.length > 0;
   }
 
-  public static inSet(value: string, set: RandexSet) {
-    const range = RandexSetUtil.toRange(set);
-    return TestUtil.inRange(value, range);
+  public static inSet(value: string, set: RandexSet, range?: string) {
+    const fullRange = RandexSetUtil.toRange(set) + (range ? range : "");
+    return TestUtil.inRange(value, fullRange);
   }
 
   public static inBoth(value: string, set: RandexSet, range: string) {

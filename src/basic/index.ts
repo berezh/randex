@@ -2,7 +2,7 @@ import { RandexContentOptions, RandexLength, RandexContentSetOptions, RandexCont
 import { RandexSetUtil } from "./set";
 import { RandexTypeParser } from "./type";
 
-interface RandomRangeOptions {
+interface RandexRangeOptions {
   range: string;
   length: RandexLength;
 }
@@ -11,7 +11,7 @@ function randomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
-function randomString(params: RandomRangeOptions) {
+function randomString(params: RandexRangeOptions) {
   const { length, range } = params;
   let result = "";
 
@@ -63,7 +63,7 @@ function toContent(options: RandexContentOptions): RandexContentSetOptions | Ran
   return options as RandexContentSetOptions | RandexContentRangeOptions;
 }
 
-function toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOptions): RandomRangeOptions {
+function toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOptions): RandexRangeOptions {
   let fullRange = "";
   const { set, range, length = 1 } = options;
 
