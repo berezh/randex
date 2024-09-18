@@ -302,8 +302,10 @@ There are examples how to create custom function for most common cases:
 <b>randomFileName</b>
 
 ```ts
-random([["english", "number"], "_.", [5, 10]]) +
-  random(["english", "number"]) +
+random([
+  ["english", "number"],
+  [3, 10],
+]) +
   "." +
   random([
     ["english", "l"],
@@ -326,13 +328,19 @@ random(
 <b>randomEmail</b>
 
 ```ts
-random(["english", "l"], [[["english", "l"], "number"], 10], ["english", "l"]) +
+random([
+  [["english", "l"], "number"],
+  [6, 10],
+]) +
   "@" +
-  random(["english", "l"], [["english", "l"], "-", [0, 5]], ["english", "l"]) +
-  "." +
   random([
     ["english", "l"],
     [2, 4],
+  ]) +
+  "." +
+  random([
+    ["english", "l"],
+    [1, 6],
   ]);
 ```
 
