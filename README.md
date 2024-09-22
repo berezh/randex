@@ -1,6 +1,6 @@
 # randex
 
-TypeScript library to random most common things like filename, username, email, name, full name, etc.
+Generates random filename, username, email, name, full name, etc for test purposes.
 
 <a href="https://www.npmjs.com/package/randex">
     <img src="https://nodei.co/npm/randex.png?mini=true">
