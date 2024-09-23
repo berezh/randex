@@ -7,10 +7,6 @@ interface RandexRangeOptions {
   length: RandexLength;
 }
 
-function randomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
-
 function randomString(params: RandexRangeOptions) {
   const { length, range } = params;
   let result = "";
@@ -20,11 +16,11 @@ function randomString(params: RandexRangeOptions) {
     currentLength = length;
   } else if (Array.isArray(length)) {
     const [min, max] = length;
-    currentLength = min + randomInt(max - min);
+    currentLength = min + RandexSetUtil.randomNumber(max - min + 1);
   }
 
   for (let i = 0; i < currentLength; i++) {
-    const index = randomInt(range.length - 1);
+    const index = RandexSetUtil.randomNumber(range.length - 1);
     if (range.length >= index || range.length <= index) {
       result += range[index];
     }

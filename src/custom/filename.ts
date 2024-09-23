@@ -22,7 +22,7 @@ export function randomFileName(fileNameLength: RandexLength, extensionLength?: R
 export function randomFileName(fileNameLength: RandexLength, extension: string);
 export function randomFileName(extension: string);
 export function randomFileName(p1?: any, p2?: any) {
-  let fileNameLength: RandexLength = RandexSetUtil.getLength(1, RandexSetUtil.defaultFileNameLength, RandexSetUtil.defaultFileNameLength);
+  let fileNameLength = RandexSetUtil.defaultFileNameLength;
   let extensionLength: RandexLength = RandexSetUtil.defaultExtensionLength;
   let extension = "";
 
@@ -46,6 +46,8 @@ export function randomFileName(p1?: any, p2?: any) {
       extension = p1.extension;
     }
   }
+
+  fileNameLength = RandexSetUtil.getLength(1, fileNameLength, fileNameLength);
 
   if (!extension) {
     extension = random([["english", "l"], extensionLength]);

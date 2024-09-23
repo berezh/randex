@@ -59,7 +59,7 @@ describe("randomFileName", () => {
     });
   });
 
-  it("params: extension", () => {
+  it("params2: extension", () => {
     const fileNameLength: RandexLength = [10, 15];
     const extension = "xml";
 

@@ -28,6 +28,32 @@ describe("random", () => {
     inRange("1234abc!@#", 3);
   });
 
+  it("result 1: number", () => {
+    const length: RandexLength = [0, 4];
+    const result: Record<number, number> = {};
+    TestUtil.loop(() => {
+      const l = random({ set: "english", length }).length;
+      result[l] = (result[l] || 0) + 1;
+    });
+
+    for (let i = 0; i <= 4; i++) {
+      expect(result[i]).toBeGreaterThan(0);
+    }
+  });
+
+  it("result 2: number range", () => {
+    const length: RandexLength = [5, 8];
+    const result: Record<number, number> = {};
+    TestUtil.loop(() => {
+      const l = random({ set: "english", length }).length;
+      result[l] = (result[l] || 0) + 1;
+    });
+
+    for (let i = 5; i <= 8; i++) {
+      expect(result[i]).toBeGreaterThan(0);
+    }
+  });
+
   it("length: alphabet", () => {
     inSet("english", 0);
     inSet("english", [0, 0]);
