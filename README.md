@@ -14,7 +14,7 @@ Installation:
 npm i randex
 ```
 
-Functions:
+Strings:
 
 - [random](#random)
 - [randomFileName](#randomfilename)
@@ -22,8 +22,13 @@ Functions:
 - [randomEmail](#randomemail)
 - [randomName](#randomname)
 - [randomFullName](#randomfullname)
+
+Numbers:
 - [randomNumber](#randomnumber)
 - [randomNumberArray](#randomnumberarray)
+
+Generic Type:
+- [randomArray](#randomarray)
 
 Deeps:
 
@@ -312,7 +317,7 @@ randomNumber([3, 7]);
 
 ## randomNumberArray
 
-Generates random array with values from from a range.
+Generates random array with values from a range.
 
 ```ts
 import { randomNumberArray } from "randex";
@@ -322,6 +327,20 @@ randomNumberArray(3, 2);
 
 // Generates an array (with length equals 3) with unique numbers from a range: [3, 7].
 randomNumber([3, 7], 3);
+```
+
+## randomArray
+
+Generates random array with values from defined array.
+
+```ts
+import { randomArray } from "randex";
+
+// Generates an array (with length equals 2) with values picked from defined array as the first parameter.
+randomArray([1, 2, 3, 4], 2);
+// [2, 4]
+randomArray(["1", "2", "3", "4"], 2);
+// ["1", "3"]
 ```
 
 

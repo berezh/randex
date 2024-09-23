@@ -9,6 +9,7 @@ function testNumber(min: number, max: number, count: number) {
     expect(uniqueResult.find(x => x === uniqueValue)).toBeFalsy();
     expect(value[i]).toBeGreaterThanOrEqual(min);
     expect(value[i]).toBeLessThanOrEqual(max);
+    uniqueResult.push(uniqueValue);
   }
 }
 
