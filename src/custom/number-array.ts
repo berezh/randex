@@ -13,17 +13,20 @@ export function randomNumberArray(length: RandexLength, count: number): number[]
     max = length[1];
   }
 
-  let numberArray: number[] = [];
-  for (let i = min; i < max; i++) {
+  const maxCount = max - min + 1;
+
+  const numberArray: number[] = [];
+  for (let i = min; i <= max; i++) {
     numberArray.push(i);
   }
 
-  for (let i = 0; i < count; i++) {
-    const arrayCount = numberArray.length;
-    const value = randomNumber(arrayCount);
+  for (let i = 0; i < count && i < maxCount; i++) {
+    const arrayCount = numberArray.length - 1;
+    const index = randomNumber(arrayCount);
+
+    const value = numberArray[index];
     result.push(value);
-    const index = numberArray.findIndex(x => x === value);
-    numberArray = numberArray.splice(index, 1);
+    numberArray.splice(index, 1);
   }
 
   return result;

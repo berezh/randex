@@ -22,6 +22,8 @@ Functions:
 - [randomEmail](#randomemail)
 - [randomName](#randomname)
 - [randomFullName](#randomfullname)
+- [randomNumber](#randomnumber)
+- [randomNumberArray](#randomnumberarray)
 
 Deeps:
 
@@ -292,6 +294,36 @@ Options:
 |firstLength|[RandexLength](#randexlength) | First name length of chars. Default: [2, 10] |
 |secondLength|[RandexLength](#randexlength) | Second name length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+
+## randomNumber
+
+Generates random number from a range of numbers.
+
+```ts
+import { randomNumber } from "randex";
+
+// Generates a number from a range: [0, 3] (includes 0 and 3).
+randomNumber(3);
+
+// Generates a number from a specified range: [3, 7].
+randomNumber([3, 7]);
+```
+
+## randomNumberArray
+
+Generates random array with values from from a range.
+
+```ts
+import { randomNumberArray } from "randex";
+
+// Generates an array (with length equals 2) with unique numbers from a range: [0, 3].
+randomNumberArray(3, 2);
+
+// Generates an array (with length equals 3) with unique numbers from a range: [3, 7].
+randomNumber([3, 7], 3);
+```
+
 
 ## Customization
 
