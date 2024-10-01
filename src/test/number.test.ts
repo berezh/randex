@@ -7,9 +7,9 @@ function testNumber(max: number) {
   expect(value).toBeLessThanOrEqual(max);
 }
 
-function testNumberWithArray(range: [number, number]) {
+function testNumberWithArray(range: [number, number], two = false) {
   const [min, max] = range;
-  const value = randomNumber(range);
+  const value = two ? randomNumber(range) : randomNumber(min, max);
   expect(value).toBeGreaterThanOrEqual(min);
   expect(value).toBeLessThanOrEqual(max);
 }
@@ -37,6 +37,12 @@ describe("randomNumber", () => {
   it("param: number array", () => {
     TestUtil.loop(() => {
       testNumberWithArray([10, 15]);
+    });
+  });
+
+  it("param: two numbers", () => {
+    TestUtil.loop(() => {
+      testNumberWithArray([10, 15], true);
     });
   });
 });
