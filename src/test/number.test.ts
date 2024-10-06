@@ -45,4 +45,28 @@ describe("randomNumber", () => {
       testNumberWithArray([10, 15], true);
     });
   });
+
+  it("two numbers with decimals", () => {
+    let count = 0;
+    TestUtil.loop(() => {
+      const value = randomNumber(1, 10, { decimals: 2 });
+      if (/\.\d{2}$/g.test(value.toString())) {
+        count++;
+      }
+    });
+
+    expect(count).toBeGreaterThan(1);
+  });
+
+  it("a number with decimals", () => {
+    let count = 0;
+    TestUtil.loop(() => {
+      const value = randomNumber(10, { decimals: 2 });
+      if (/\.\d{2}$/g.test(value.toString())) {
+        count++;
+      }
+    });
+
+    expect(count).toBeGreaterThan(1);
+  });
 });

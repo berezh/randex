@@ -315,6 +315,11 @@ randomNumber(3);
 randomNumber([3, 7]);
 ```
 
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|decimals| `number` | Number of decimal digits |
+
 ## randomNumberArray
 
 Generates random array with values from a range.
