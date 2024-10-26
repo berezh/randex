@@ -6,3 +6,4 @@ export * from "./fullname";
 export * from "./number";
 export * from "./number-array";
 export * from "./array";
+export * from "./bool";

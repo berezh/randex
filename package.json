@@ -1,6 +1,6 @@
 {
   "name": "randex",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,8 @@
     "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "v": "npm --no-git-tag-version version minor"
+    "v": "npm --no-git-tag-version version minor",
+    "p": "npm run v && npm run lint:fix && git add * && git commit -m\"v\" && git push origin master"
   },
   "repository": {
     "type": "git",
