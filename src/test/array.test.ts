@@ -1,7 +1,7 @@
-import { randomArray } from "../custom/array";
+import { Randex } from "../custom";
 
 function testUniqueArray<T>(array: T[], count: number) {
-  const value = randomArray(array, count);
+  const value = Randex.array(array, count);
   const uniqueResult: T[] = [];
 
   for (let i = 0; i < count; i++) {

@@ -1,5 +1,5 @@
 import { RandexSetUtil } from "../basic/set";
-import { randomEmail } from "../custom/email";
+import { Randex } from "../custom";
 import { RandexLength } from "../interfaces";
 import { TestUtil } from "./test-util";
 
@@ -35,7 +35,7 @@ function testEmail(options: { email: string; prefixLength?: RandexLength; hightD
 describe("randomEmail", () => {
   it("simple", () => {
     TestUtil.loop(() => {
-      const email = randomEmail();
+      const email = Randex.email();
       testEmail({ email });
     });
   });
@@ -43,10 +43,10 @@ describe("randomEmail", () => {
   it("options: prefixLength", () => {
     const prefixLength: RandexLength = [10, 15];
     TestUtil.loop(() => {
-      let email = randomEmail({ prefixLength });
+      let email = Randex.email({ prefixLength });
       testEmail({ email, prefixLength });
 
-      email = randomEmail(prefixLength);
+      email = Randex.email(prefixLength);
       testEmail({ email, prefixLength });
     });
   });
@@ -55,10 +55,10 @@ describe("randomEmail", () => {
     const hightDomainLength: RandexLength = 8;
     const lowDomainLength: RandexLength = 12;
     TestUtil.loop(() => {
-      let email = randomEmail({ hightDomainLength, lowDomainLength });
+      let email = Randex.email({ hightDomainLength, lowDomainLength });
       testEmail({ email, hightDomainLength, lowDomainLength });
 
-      email = randomEmail(r.defaultEmailPrefixLength, lowDomainLength, hightDomainLength);
+      email = Randex.email(r.defaultEmailPrefixLength, lowDomainLength, hightDomainLength);
       testEmail({ email, hightDomainLength, lowDomainLength, prefixLength: r.defaultEmailPrefixLength });
     });
   });
@@ -66,10 +66,10 @@ describe("randomEmail", () => {
   it("options: domain", () => {
     const domain = "delta.com";
     TestUtil.loop(() => {
-      let email = randomEmail({ domain });
+      let email = Randex.email({ domain });
       testEmail({ email, domain });
 
-      email = randomEmail(domain);
+      email = Randex.email(domain);
       testEmail({ email, domain });
     });
   });

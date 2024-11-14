@@ -1,4 +1,4 @@
-import { randomArrayItem } from "../custom/array-item";
+import { Randex } from "../custom";
 import { TestUtil } from "./test-util";
 
 describe("randomArrayItem", () => {
@@ -8,7 +8,7 @@ describe("randomArrayItem", () => {
     const resultArray: { [key: number]: number } = {};
 
     TestUtil.loop(() => {
-      const value = randomArrayItem(array);
+      const value = Randex.arrayItem(array);
       resultArray[value] = (resultArray[value] || 0) + 1;
     });
 

@@ -1,56 +1,55 @@
-import { random } from "../basic";
-import { randomEmail, randomFileName, randomFullName, randomName, randomUsername } from "../custom";
+import { Randex } from "../custom";
 
 describe("markdown", () => {
   it("random", () => {
-    let value = random({
+    let value = Randex.random({
       set: "english",
       length: 3,
     });
     expect(value.length).toBe(3);
-    value = random(["english", 3]);
+    value = Randex.random(["english", 3]);
     expect(value.length).toBe(3);
     //
-    value = random({
+    value = Randex.random({
       set: ["english", "lower"],
       length: 3,
     });
     expect(value.length).toBe(3);
-    value = random([["english", "lower"], 3]);
+    value = Randex.random([["english", "lower"], 3]);
     expect(value.length).toBe(3);
     //
-    value = random({
+    value = Randex.random({
       set: "english",
       length: [1, 3],
     });
     expect(value.length).toBeLessThanOrEqual(3);
-    value = random(["english", [1, 3]]);
+    value = Randex.random(["english", [1, 3]]);
     expect(value.length).toBeLessThanOrEqual(3);
     //
-    value = random({
+    value = Randex.random({
       set: "number",
       length: 3,
     });
     expect(value.length).toBe(3);
-    value = random(["number", 3]);
+    value = Randex.random(["number", 3]);
     expect(value.length).toBe(3);
     //
-    value = random({
+    value = Randex.random({
       range: "abc123",
       length: 3,
     });
     expect(value.length).toBe(3);
 
     //
-    value = random({
+    value = Randex.random({
       set: ["english", "number"],
       length: 3,
     });
     expect(value.length).toBe(3);
-    value = random([["english", "number"], 3]);
+    value = Randex.random([["english", "number"], 3]);
     expect(value.length).toBe(3);
     //
-    value = random(
+    value = Randex.random(
       {
         set: "english",
         length: 2,
@@ -61,75 +60,75 @@ describe("markdown", () => {
       }
     );
     expect(value.length).toBe(4);
-    value = random(["english", 2], [["english", "number"], 2]);
+    value = Randex.random(["english", 2], [["english", "number"], 2]);
     expect(value.length).toBe(4);
   });
 
   it("randomFileName", () => {
-    let value = randomFileName();
+    let value = Randex.fileName();
 
-    value = randomFileName({
+    value = Randex.fileName({
       extension: "txt",
     });
-    value = randomFileName("txt");
+    value = Randex.fileName("txt");
 
-    value = randomFileName({
+    value = Randex.fileName({
       fileNameLength: [7, 10],
       extensionLength: 5,
     });
-    value = randomFileName([7, 10], 5);
+    value = Randex.fileName([7, 10], 5);
 
-    value = randomFileName({
+    value = Randex.fileName({
       fileNameLength: 8,
       extension: "xml",
     });
-    value = randomFileName(8, "xml");
+    value = Randex.fileName(8, "xml");
 
     expect(value).toBeTruthy();
   });
 
   it("randomUsername", () => {
-    const value = randomUsername();
+    const value = Randex.username();
 
     expect(value).toBeTruthy();
   });
 
   it("randomEmail", () => {
-    let value = randomEmail();
+    let value = Randex.email();
 
-    value = randomEmail({
+    value = Randex.email({
       prefixLength: 8,
     });
-    value = randomEmail(8);
+    value = Randex.email(8);
 
-    value = randomEmail({
+    value = Randex.email({
       prefixLength: 8,
       lowDomainLength: 4,
       hightDomainLength: 2,
     });
-    value = randomEmail(8, 4, 2);
+    value = Randex.email(8, 4, 2);
 
-    value = randomEmail({
+    value = Randex.email({
       domain: "test.com",
     });
-    value = randomEmail("test.com");
+    value = Randex.email("test.com");
 
     expect(value).toBeTruthy();
   });
 
-  it("randomName", () => {
-    let value = randomName();
+  it("singleName", () => {
+    let value = Randex.singleName();
     expect(value).toBeTruthy();
-    value = randomName({ alphabet: "french" });
+    value = Randex.singleName({ alphabet: "french" });
     expect(value).toBeTruthy();
-    value = randomName({ length: 5 });
+    value = Randex.singleName({ length: 5 });
     expect(value).toBeTruthy();
-    value = randomName({ length: [2, 5] });
+    value = Randex.singleName({ length: [2, 5] });
     expect(value).toBeTruthy();
   });
 
   it("randomFullName", () => {
-    const value = randomFullName();
+    const value = Randex.fullName();
     expect(value).toBeTruthy();
   });
 });

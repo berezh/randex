@@ -1,5 +1,5 @@
 import { RandexSetUtil } from "../basic/set";
-import { randomFileName } from "../custom/filename";
+import { Randex } from "../custom";
 import { RandexLength } from "../interfaces";
 import { TestUtil } from "./test-util";
 
@@ -30,7 +30,7 @@ function testFileName(options: { fullFileName: string; fileNameLength?: RandexLe
 describe("randomFileName", () => {
   it("simple", () => {
     TestUtil.loop(() => {
-      const fullFileName = randomFileName();
+      const fullFileName = Randex.fileName();
       testFileName({ fullFileName });
     });
   });
@@ -39,10 +39,10 @@ describe("randomFileName", () => {
     const fileNameLength: RandexLength = [10, 15];
 
     TestUtil.loop(() => {
-      let fullFileName = randomFileName({ fileNameLength });
+      let fullFileName = Randex.fileName({ fileNameLength });
       testFileName({ fullFileName, fileNameLength });
 
-      fullFileName = randomFileName(fileNameLength);
+      fullFileName = Randex.fileName(fileNameLength);
       testFileName({ fullFileName, fileNameLength });
     });
   });
@@ -51,10 +51,10 @@ describe("randomFileName", () => {
     const extensionLength: RandexLength = [10, 15];
 
     TestUtil.loop(() => {
-      let fullFileName = randomFileName({ extensionLength });
+      let fullFileName = Randex.fileName({ extensionLength });
       testFileName({ fullFileName, extensionLength });
 
-      fullFileName = randomFileName(r.defaultFileNameLength, extensionLength);
+      fullFileName = Randex.fileName(r.defaultFileNameLength, extensionLength);
       testFileName({ fullFileName, fileNameLength: r.defaultFileNameLength, extensionLength });
     });
   });
@@ -64,16 +64,16 @@ describe("randomFileName", () => {
     const extension = "xml";
 
     TestUtil.loop(() => {
-      let fullFileName = randomFileName({ extension });
+      let fullFileName = Randex.fileName({ extension });
       testFileName({ fullFileName, extension });
 
-      fullFileName = randomFileName(extension);
+      fullFileName = Randex.fileName(extension);
       testFileName({ fullFileName, extension });
 
-      fullFileName = randomFileName("." + extension);
+      fullFileName = Randex.fileName("." + extension);
       testFileName({ fullFileName, extension });
 
-      fullFileName = randomFileName(fileNameLength, extension);
+      fullFileName = Randex.fileName(fileNameLength, extension);
       testFileName({ fullFileName, fileNameLength, extension });
     });
   });

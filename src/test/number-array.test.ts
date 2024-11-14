@@ -1,7 +1,7 @@
-import { randomNumberArray } from "../custom/number-array";
+import { Randex } from "../custom";
 
 function testNumber(min: number, max: number, count: number) {
-  const value = randomNumberArray([min, max], count);
+  const value = Randex.numberArray([min, max], count);
   const uniqueResult: number[] = [];
 
   for (let i = 0; i < count; i++) {
@@ -32,11 +32,11 @@ describe("randomNumberArray", () => {
     const min = 5;
     const max = 10;
     const count = max - min + 1;
-    let value = randomNumberArray([min, max], count);
+    let value = Randex.numberArray([min, max], count);
     expect(value.length).toBe(count);
 
     // max length limit
-    value = randomNumberArray([min, max], count + 10);
+    value = Randex.numberArray([min, max], count + 10);
     expect(value.length).toBe(count);
   });
 
@@ -44,7 +44,7 @@ describe("randomNumberArray", () => {
     const min = 5;
     const max = 10;
     const count = max - min + 1;
-    const value = randomNumberArray([min, max], count);
+    const value = Randex.numberArray([min, max], count);
     expect(value.length).toBe(count);
 
     for (let i = min; i <= max; i++) {

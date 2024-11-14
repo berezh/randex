@@ -1,14 +1,14 @@
-import { random } from "../basic";
 import { TestUtil } from "./test-util";
 import { RandexLength, RandexSet } from "../interfaces";
+import { Randex } from "../custom";
 
 function inSet(set: RandexSet, length: RandexLength = 1) {
-  const result = random({ set, length });
+  const result = Randex.random({ set, length });
   TestUtil.testInSet(result, set, length);
 }
 
 function inRange(range: string, length: RandexLength = 1) {
-  const result = random({ range, length });
+  const result = Randex.random({ range, length });
   TestUtil.testInRange(result, range, length);
 }
 
@@ -32,7 +32,7 @@ describe("random", () => {
     const length: RandexLength = [0, 4];
     const result: Record<number, number> = {};
     TestUtil.loop(() => {
-      const l = random({ set: "english", length }).length;
+      const l = Randex.random({ set: "english", length }).length;
       result[l] = (result[l] || 0) + 1;
     });
 
@@ -45,7 +45,7 @@ describe("random", () => {
     const length: RandexLength = [5, 8];
     const result: Record<number, number> = {};
     TestUtil.loop(() => {
-      const l = random({ set: "english", length }).length;
+      const l = Randex.random({ set: "english", length }).length;
       result[l] = (result[l] || 0) + 1;
     });
 
@@ -62,18 +62,18 @@ describe("random", () => {
   });
 
   it("length: alphabet", () => {
-    let value = random("english");
+    let value = Randex.random("english");
     expect(value.length).toBe(1);
-    value = random(["english", "l"]);
+    value = Randex.random(["english", "l"]);
     expect(value.length).toBe(1);
   });
 
   it("alphabet: upper", () => {
     TestUtil.loop(() => {
-      let value = random(["english", "u"]);
+      let value = Randex.random(["english", "u"]);
       expect(TestUtil.isUpperCharValid(value, 1)).toBeTruthy();
 
-      value = random([
+      value = Randex.random([
         ["english", "u"],
         [1, 3],
       ]);
@@ -83,10 +83,10 @@ describe("random", () => {
 
   it("alphabet: lower", () => {
     TestUtil.loop(() => {
-      let value = random(["english", "l"]);
+      let value = Randex.random(["english", "l"]);
       expect(TestUtil.isLowerCharValid(value, 1)).toBeTruthy();
 
-      value = random([
+      value = Randex.random([
         ["english", "lower"],
         [1, 3],
       ]);
