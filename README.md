@@ -17,18 +17,18 @@ npm i randex
 Strings:
 
 - [random](#random)
-- [randomFileName](#randomfilename)
-- [randomUsername](#randomusername)
-- [randomEmail](#randomemail)
-- [randomName](#randomname)
-- [randomFullName](#randomfullname)
+- [fileName](#filename)
+- [username](#username)
+- [email](#email)
+- [singleName](#singlename)
+- [fullName](#fullname)
 
 Numbers:
-- [randomNumber](#randomnumber)
-- [randomNumberArray](#randomnumberarray)
+- [number](#number)
+- [numberArray](#numberarray)
 
 Generic Type:
-- [randomArray](#randomarray)
+- [array](#array)
 
 Deeps:
 
@@ -40,62 +40,62 @@ Deeps:
 Basic function to construct random things.
 
 ```ts
-import { random } from "randex";
+import Randex from "randex";
 
 // 3 english chars
-random({
+Randex.random({
   set: "english",
   length: 3,
 });
 // or short:
-random(["english", 3]);
+Randex.random(["english", 3]);
 // EFd
 
 // 3 lower english chars
-random({
+Randex.random({
   set: ["english", "lower"],
   length: 3,
 });
 // or short:
-random([["english", "lower"], 3]);
+Randex.random([["english", "lower"], 3]);
 // yhl
 
 // min 1 and max 3 english chars
-random({
+Randex.random({
   set: "english",
   length: [1, 3],
 });
 // or short:
-random(["english", [1, 3]]);
+Randex.random(["english", [1, 3]]);
 // eR
 
 // 3 number chars
-random({
+Randex.random({
   set: "number",
   length: 3,
 });
 // or short:
-random(["number", 3]);
+Randex.random(["number", 3]);
 // 643
 
 // 3 chars from custom range
-random({
+Randex.random({
   range: "abc123",
   length: 3,
 });
 // a21
 
 // 3 english or number chars
-random({
+Randex.random({
   set: ["english", "number"],
   length: 3,
 });
 // or short:
-random([["english", "number"], 3]);
+Randex.random([["english", "number"], 3]);
 // x4d
 
 // 4 chars: 2 english and 2 english or number
-random(
+Randex.random(
   {
     set: "english",
     length: 2,
@@ -106,7 +106,7 @@ random(
   }
 );
 // or short:
-random(["english", 2], [["english", "number"], 2]);
+Randex.random(["english", 2], [["english", "number"], 2]);
 // Kb3b
 ```
 
@@ -117,43 +117,43 @@ Options:
 |range|`string`| Range or custom chars |
 |length|[RandexLength](#randexlength) | Length of chars |
 
-## randomFileName
+## fileName
 
 Randoms file name.
 
 ```ts
-import { randomFileName } from "randex";
+import Randex from "randex";
 
 // default
-randomFileName({
+Randex.fileName({
   extension: "txt",
 });
 // td1TX31eOB.txt
 
 // defined extension
-randomFileName({
+Randex.fileName({
   extension: "txt",
 });
 // or short:
-randomFileName("txt");
+Randex.fileName("txt");
 // HkmOjqHC6.txt
 
 // defined file name length and extension length
-randomFileName({
+Randex.fileName({
   fileNameLength: [7, 10],
   extensionLength: 5,
 });
 // or short:
-randomFileName([7, 10], 5);
+Randex.fileName([7, 10], 5);
 // 1SJVkHSBjq.tejuw
 
 // defined file name length and extension
-randomFileName({
+Randex.fileName({
   fileNameLength: 8,
   extension: "xml",
 });
 // or short:
-randomFileName(8, "xml");
+Randex.fileName(8, "xml");
 // JyCsuN5kD.xml
 ```
 
@@ -164,27 +164,27 @@ Options:
 |extensionLength|[RandexLength](#randexlength) | Length of extension (not including file name) chars. Default: [2,5] |
 |extension| `string`| File extension. |
 
-## randomUsername
+## username
 
 Randoms username.
 
 ```ts
-import { randomUsername } from "randex";
+import Randex from "randex";
 
 // default
-randomUsername();
+Randex.username();
 // icvv81d1j
 
 // with length 5 chars
-randomUsername({ length: 5 });
+Randex.username({ length: 5 });
 // or short:
-randomUsername(5);
+Randex.username(5);
 // okmle
 
 // with 2 min and 5 max chars
-randomName({ length: [2, 5] });
+Randex.singleName({ length: [2, 5] });
 // or short:
-randomUsername([2, 5]);
+Randex.username([2, 5]);
 // lkhs
 ```
 
@@ -239,39 +239,39 @@ Options:
 |lowDomainLength|[RandexLength](#randexlength) | Length of low domain part (example: <b>test</b>.com). Default: [4,2] |
 |domain| `string`| Defined domain. |
 
-## randomName
+## singleName
 
 Randoms a name of the person, city, place, restaurant, ect.
 
 ```ts
-import { randomName } from "randex";
+import Randex from "randex";
 
 // default
-randomName();
+Randex.singleName();
 // Ijb
 
 // with length 5 chars
-randomName({ length: 5 });
+Randex.singleName({ length: 5 });
 // or short:
-randomName(5);
+Randex.singleName(5);
 // Okmpj
 
 // with 2 min and 5 max chars
-randomName({ length: [2, 5] });
+Randex.singleName({ length: [2, 5] });
 // or short:
-randomName([2, 5]);
+Randex.singleName([2, 5]);
 // Wslg
 
 // name from french alphabet
-randomName({ alphabet: "french" });
+Randex.singleName({ alphabet: "french" });
 // or short:
-randomName("french");
+Randex.singleName("french");
 // Dbïœ
 
 // name from french alphabet with length
-randomName({ alphabet: "french", length: 10 });
+Randex.singleName({ alphabet: "french", length: 10 });
 // or short:
-randomName("french", 10);
+Randex.singleName("french", 10);
 // Rsîrjhjôôw
 ```
 
@@ -286,10 +286,10 @@ Options:
 Randoms a full name of the person.
 
 ```ts
-import { randomFullName } from "randex";
+import Randex from "randex";
 
 // default
-randomFullName();
+Randex.fullName();
 // Eqaa Bfmotnq
 ```
 
@@ -301,18 +301,18 @@ Options:
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 
-## randomNumber
+## number
 
 Generates random number from a range of numbers.
 
 ```ts
-import { randomNumber } from "randex";
+import Randex from "randex";
 
 // Generates a number from a range: [0, 3] (includes 0 and 3).
-randomNumber(3);
+Randex.number(3);
 
 // Generates a number from a specified range: [3, 7].
-randomNumber([3, 7]);
+Randex.number([3, 7]);
 ```
 
 Options:
@@ -320,31 +320,31 @@ Options:
 | ------------------------ | ---- |------------ |
 |decimals| `number` | Number of decimal digits |
 
-## randomNumberArray
+## numberArray
 
 Generates random array with values from a range.
 
 ```ts
-import { randomNumberArray } from "randex";
+import Randex from "randex";
 
 // Generates an array (with length equals 2) with unique numbers from a range: [0, 3].
-randomNumberArray(3, 2);
+Randex.numberArray(3, 2);
 
 // Generates an array (with length equals 3) with unique numbers from a range: [3, 7].
-randomNumber([3, 7], 3);
+Randex.numberArray([3, 7], 3);
 ```
 
-## randomArray
+## array
 
 Generates random array with values from defined array.
 
 ```ts
-import { randomArray } from "randex";
+import Randex from "randex";
 
 // Generates an array (with length equals 2) with values picked from defined array as the first parameter.
-randomArray([1, 2, 3, 4], 2);
+Randex.array([1, 2, 3, 4], 2);
 // [2, 4]
-randomArray(["1", "2", "3", "4"], 2);
+Randex.array(["1", "2", "3", "4"], 2);
 // ["1", "3"]
 ```
 
@@ -355,24 +355,24 @@ randomArray(["1", "2", "3", "4"], 2);
 
 There are examples how to create custom function for most common cases:
 
-<b>randomFileName</b>
+<b>Randex.fileName</b>
 
 ```ts
-random([
+Randex.random([
   ["english", "number"],
   [3, 10],
 ]) +
   "." +
-  random([
+  Randex.random([
     ["english", "l"],
     [2, 5],
   ]);
 ```
 
-<b>randomUsername</b>
+<b>Randex.username</b>
 
 ```ts
-random(
+Randex.random(
   ["english", "l"],
   [
     [["english", "l"], "number"],
@@ -381,29 +381,29 @@ random(
 );
 ```
 
-<b>randomEmail</b>
+<b>Randex.email</b>
 
 ```ts
-random([
+Randex.random([
   [["english", "l"], "number"],
   [6, 10],
 ]) +
   "@" +
-  random([
+  Randex.random([
     ["english", "l"],
     [2, 4],
   ]) +
   "." +
-  random([
+  Randex.random([
     ["english", "l"],
     [1, 6],
   ]);
 ```
 
-<b>randomName</b>
+<b>Randex.singleName</b>
 
 ```ts
-random(
+Randex.random(
   ["english", "u"],
   [
     ["english", "l"],
@@ -412,10 +412,10 @@ random(
 );
 ```
 
-<b>randomFullName</b>
+<b>Randex.fullName</b>
 
 ```ts
-random(
+Randex.random(
   ["english", "u"],
   [
     ["english", "l"],
@@ -423,7 +423,7 @@ random(
   ]
 ) +
   " " +
-  random(
+  Randex.random(
     ["english", "u"],
     [
       ["english", "l"],
@@ -445,11 +445,11 @@ Possible types:
 Example:
 
 ```ts
-random({ set: "bit", length: 5 });
-random({ set: "bit", length: [5, 10] });
+Randex.random({ set: "bit", length: 5 });
+Randex.random({ set: "bit", length: [5, 10] });
 // or short:
-random(["bit", 5]);
-random(["bit", [5, 10]]);
+Randex.random(["bit", 5]);
+Randex.random(["bit", [5, 10]]);
 ```
 
 ## RandexSet
@@ -463,13 +463,13 @@ Possible types:
 Example:
 
 ```ts
-random({ set: "bit" });
-random({ set: "spanish" });
-random({ set: ["spanish", "lower"] });
+Randex.random({ set: "bit" });
+Randex.random({ set: "spanish" });
+Randex.random({ set: ["spanish", "lower"] });
 // or short:
-random("bit");
-random("spanish");
-random(["spanish", "l"]);
+Randex.random("bit");
+Randex.random("spanish");
+Randex.random(["spanish", "l"]);
 ```
 
 ## RandexAlphabet
@@ -481,9 +481,9 @@ An alphabet of chars
 Example:
 
 ```ts
-random({ set: "spanish" });
+Randex.random({ set: "spanish" });
 // or short:
-random("spanish");
+Randex.random("spanish");
 ```
 
 ## RandexKit
@@ -495,9 +495,9 @@ A kit of chars
 Example:
 
 ```ts
-random({ set: "hex" });
+Randex.random({ set: "hex" });
 // or short:
-random("hex");
+Randex.random("hex");
 ```
 
 ## RandexCase
@@ -509,7 +509,7 @@ A case of alphabet
 Example:
 
 ```ts
-random({ set: ["spanish", "lower"] });
+Randex.random({ set: ["spanish", "lower"] });
 // or short:
-random(["spanish", "l"]);
+Randex.random(["spanish", "l"]);
 ```
