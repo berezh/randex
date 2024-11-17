@@ -22,6 +22,7 @@ Strings:
 - [email](#email)
 - [singleName](#singlename)
 - [fullName](#fullname)
+- [word](#word)
 
 Numbers:
 - [number](#number)
@@ -298,6 +299,50 @@ Options:
 | ------------------------ | ---- |------------ |
 |firstLength|[RandexLength](#randexlength) | First name length of chars. Default: [2, 10] |
 |secondLength|[RandexLength](#randexlength) | Second name length of chars. Default: [2,10] |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+
+
+## word
+
+Randoms a simple word.
+
+```ts
+import Randex from "randex";
+
+// default
+Randex.word();
+// kpmld
+
+// with length 5 chars
+Randex.word({ length: 5 });
+// or short:
+Randex.word(5);
+// imphs
+
+// with 2 min and 5 max chars
+Randex.word({ length: [2, 5] });
+// or short:
+Randex.word([2, 5]);
+// kslg
+
+// name from french alphabet
+Randex.word({ alphabet: "french" });
+// or short:
+Randex.word("french");
+// dbïœ
+
+// name from french alphabet with length
+Randex.word({ alphabet: "french", length: 10 });
+// or short:
+Randex.word("french", 10);
+// rsîrjhjôôw
+```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|length|[RandexLength](#randexlength) | Length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 

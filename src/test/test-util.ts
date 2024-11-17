@@ -81,13 +81,18 @@ export class TestUtil {
     return String(email).match(/^[A-Z][a-z]{1,}$/);
   }
 
+  public static isWordValid(word: string, length: RandexLength = 2) {
+    const l = TestUtil.getLength(length);
+    return String(word).match(new RegExp(`\^[a-z]\{${l}\}\$`));
+  }
+
   public static isUpperCharValid(value: string, length: RandexLength = 1) {
-    const l = Array.isArray(length) ? `${length[0]},${length[1]}` : length;
+    const l = TestUtil.getLength(length);
     return String(value).match(new RegExp(`\^[A-Z]\{${l}\}\$`));
   }
 
   public static isLowerCharValid(value: string, length: RandexLength = 1) {
-    const l = Array.isArray(length) ? `${length[0]},${length[1]}` : length;
+    const l = TestUtil.getLength(length);
     return String(value).match(new RegExp(`^[a-z]{${l}}$`));
   }
 
@@ -103,5 +108,9 @@ export class TestUtil {
 
   public static inNumberRange(value: number, range: [number, number]) {
     return value >= range[0] && value <= range[1];
+  }
+
+  private static getLength(length: RandexLength) {
+    return Array.isArray(length) ? `${length[0]},${length[1]}` : length;
   }
 }

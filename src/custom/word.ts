@@ -1,6 +1,6 @@
 import { RandexAlphabet, RandexLength } from "../interfaces";
 
-export interface RandexSingleNameOptions {
+export interface RandexWordOptions {
   alphabet?: RandexAlphabet;
   length?: RandexLength;
 }

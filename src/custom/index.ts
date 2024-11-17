@@ -3,7 +3,7 @@ import { RandexTypeParser } from "../basic/type";
 import { RandexAlphabet, RandexContentOptions, RandexContentRangeOptions, RandexContentSetOptions, RandexLength } from "../interfaces";
 import { RandexEmailOptions } from "./email";
 import { RandexFileNameOptions } from "./filename";
-import { RandexSingleNameOptions } from "./singleName";
+import { RandexWordOptions } from "./word";
 import { RandomNumberOptions } from "./number";
 import { RandexRangeOptions } from "./random";
 import { RandexUsernameOptions } from "./username";
@@ -11,7 +11,7 @@ import { RandexFullNameOptions } from "./fullname";
 
 export * from "./email";
 export * from "./filename";
-export * from "./singleName";
+export * from "./word";
 export * from "./username";
 export * from "./fullname";
 export * from "./number";
@@ -272,7 +272,7 @@ export class Randex {
     return Randex.singleName({ length: firstLength, alphabet }) + " " + Randex.singleName({ length: secondLength, alphabet });
   }
 
-  public static singleName(options?: RandexSingleNameOptions);
+  public static singleName(options?: RandexWordOptions);
 
   public static singleName(length: RandexLength);
 
@@ -301,6 +301,36 @@ export class Randex {
 
     const currentLength = RandexSetUtil.getLength(1, length, [1, 9]);
     return Randex.random([alphabet, "u"], [[alphabet, "l"], currentLength]);
+  }
+
+  public static word(options?: RandexWordOptions);
+
+  public static word(length: RandexLength);
+
+  public static word(alphabet?: RandexAlphabet);
+
+  public static word(alphabet: RandexAlphabet, length: RandexLength);
+
+  public static word(p1?: any, p2?: any) {
+    let length: RandexLength = [2, 10];
+    let alphabet: RandexAlphabet = "english";
+    if (RandexTypeParser.isLength(p1)) {
+      length = p1;
+    } else if (RandexTypeParser.inAlphabet(p1)) {
+      alphabet = p1;
+      if (RandexTypeParser.isLength(p2)) {
+        length = p2;
+      }
+    } else if (typeof p1 === "object") {
+      if (p1.alphabet) {
+        alphabet = p1.alphabet;
+      }
+      if (p1.length) {
+        length = p1.length;
+      }
+    }
+
+    return Randex.random([[alphabet, "l"], length]);
   }
 
   public static numberArray(length: RandexLength, count: number): number[] {
