@@ -18,7 +18,7 @@ export * from "./number";
 
 export class Randex {
   // base
-  private static randomString(params: RandexRangeOptions) {
+  private static randomString(params: RandexRangeOptions): string {
     const { length, range } = params;
     let result = "";
 
@@ -88,7 +88,7 @@ export class Randex {
     };
   }
 
-  public static random(...options: RandexContentOptions[]) {
+  public static random(...options: RandexContentOptions[]): string {
     let result = "";
     for (const option of options) {
       const content = Randex.toContent(option);
@@ -140,13 +140,13 @@ export class Randex {
     return Math.random() < 0.5;
   }
 
-  public static email(options?: RandexEmailOptions);
+  public static email(options?: RandexEmailOptions): string;
 
-  public static email(prefixLength: RandexLength, lowDomainLength?: RandexLength, hightDomainLength?: RandexLength);
+  public static email(prefixLength: RandexLength, lowDomainLength?: RandexLength, hightDomainLength?: RandexLength): string;
 
-  public static email(domain: string);
+  public static email(domain: string): string;
 
-  public static email(p1?: any, p2?: any, p3?: any) {
+  public static email(p1?: any, p2?: any, p3?: any): string {
     let prefixLength: RandexLength = RandexSetUtil.defaultEmailPrefixLength;
     let hightDomainLength: RandexLength = RandexSetUtil.defaultHightDomainEmailLength;
     let lowDomainLength: RandexLength = RandexSetUtil.defaultLowDomainEmailLength;
@@ -184,15 +184,15 @@ export class Randex {
     return Randex.random([[["english", "l"], "number"], prefixLength]) + "@" + domain;
   }
 
-  public static fileName(options?: RandexFileNameOptions);
+  public static fileName(options?: RandexFileNameOptions): string;
 
-  public static fileName(fileNameLength: RandexLength, extensionLength?: RandexLength);
+  public static fileName(fileNameLength: RandexLength, extensionLength?: RandexLength): string;
 
-  public static fileName(fileNameLength: RandexLength, extension: string);
+  public static fileName(fileNameLength: RandexLength, extension: string): string;
 
-  public static fileName(extension: string);
+  public static fileName(extension: string): string;
 
-  public static fileName(p1?: any, p2?: any) {
+  public static fileName(p1?: any, p2?: any): string {
     let fileNameLength = RandexSetUtil.defaultFileNameLength;
     let extensionLength: RandexLength = RandexSetUtil.defaultExtensionLength;
     let extension = "";
@@ -232,17 +232,17 @@ export class Randex {
     );
   }
 
-  public static fullName(options?: RandexFullNameOptions);
+  public static fullName(options?: RandexFullNameOptions): string;
 
-  public static fullName(length: RandexLength); //
+  public static fullName(length: RandexLength): string;
 
-  public static fullName(alphabet?: RandexAlphabet);
+  public static fullName(alphabet?: RandexAlphabet): string;
 
-  public static fullName(alphabet: RandexAlphabet, length: RandexLength);
+  public static fullName(alphabet: RandexAlphabet, length: RandexLength): string;
 
-  public static fullName(alphabet: RandexAlphabet, firstLength: RandexLength, secondLength: RandexLength);
+  public static fullName(alphabet: RandexAlphabet, firstLength: RandexLength, secondLength: RandexLength): string;
 
-  public static fullName(p1?: any, p2?: any, p3?: any) {
+  public static fullName(p1?: any, p2?: any, p3?: any): string {
     let firstLength: RandexLength = 0;
     let secondLength: RandexLength = 0;
     let alphabet: RandexAlphabet = "english";
@@ -272,15 +272,15 @@ export class Randex {
     return Randex.singleName({ length: firstLength, alphabet }) + " " + Randex.singleName({ length: secondLength, alphabet });
   }
 
-  public static singleName(options?: RandexWordOptions);
+  public static singleName(options?: RandexWordOptions): string;
 
-  public static singleName(length: RandexLength);
+  public static singleName(length: RandexLength): string;
 
-  public static singleName(alphabet?: RandexAlphabet);
+  public static singleName(alphabet?: RandexAlphabet): string;
 
-  public static singleName(alphabet: RandexAlphabet, length: RandexLength);
+  public static singleName(alphabet: RandexAlphabet, length: RandexLength): string;
 
-  public static singleName(p1?: any, p2?: any) {
+  public static singleName(p1?: any, p2?: any): string {
     let length: RandexLength = 0;
     let alphabet: RandexAlphabet = "english";
     if (RandexTypeParser.isLength(p1)) {
@@ -303,15 +303,15 @@ export class Randex {
     return Randex.random([alphabet, "u"], [[alphabet, "l"], currentLength]);
   }
 
-  public static word(options?: RandexWordOptions);
+  public static word(options?: RandexWordOptions): string;
 
-  public static word(length: RandexLength);
+  public static word(length: RandexLength): string;
 
-  public static word(alphabet?: RandexAlphabet);
+  public static word(alphabet?: RandexAlphabet): string;
 
-  public static word(alphabet: RandexAlphabet, length: RandexLength);
+  public static word(alphabet: RandexAlphabet, length: RandexLength): string;
 
-  public static word(p1?: any, p2?: any) {
+  public static word(p1?: any, p2?: any): string {
     let length: RandexLength = [2, 10];
     let alphabet: RandexAlphabet = "english";
     if (RandexTypeParser.isLength(p1)) {
