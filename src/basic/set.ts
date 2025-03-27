@@ -115,4 +115,12 @@ export class RandexSetUtil {
   public static randomNumber(length: number) {
     return Math.floor(Math.random() * length);
   }
+
+  public static many<TItem>(count: number, callback: () => TItem): TItem[] {
+    const result: TItem[] = [];
+    for (let i = 0; i < count; i++) {
+      result.push(callback());
+    }
+    return result;
+  }
 }

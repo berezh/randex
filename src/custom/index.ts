@@ -7,7 +7,7 @@ import { randexNumber } from "./number";
 import { randexRandom } from "./random";
 import { randexSingleName } from "./singleName";
 import { randexUsername } from "./username";
-import { randexWord } from "./word";
+import { randexManyWord, randexWord } from "./word";
 
 export class Randex {
   public static random = randexRandom;
@@ -97,8 +97,6 @@ export class Randex {
   public static username = randexUsername;
 
   public static many(count: number) {
-    return {
-      word: {},
-    };
+    return { word: randexManyWord(count) };
   }
 }
