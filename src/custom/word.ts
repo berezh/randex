@@ -2,6 +2,12 @@ import { RandexTypeParser } from "../basic/type";
 import { RandexAlphabet, RandexLength, RandexWordOptions } from "../interfaces";
 import { randexRandom } from "./random";
 
+export type RandexWordType =
+  | ((options?: RandexWordOptions) => string)
+  | ((length: RandexLength) => string)
+  | ((alphabet?: RandexAlphabet) => string)
+  | ((alphabet: RandexAlphabet, length: RandexLength) => string);
+
 export function randexWord(options?: RandexWordOptions): string;
 
 export function randexWord(length: RandexLength): string;
