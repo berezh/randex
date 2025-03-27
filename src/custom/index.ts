@@ -1,8 +1,8 @@
 import { RandexLength } from "../interfaces";
 import { randexBool } from "./bool";
 import { randexEmail } from "./email";
-import { randexFileName } from "./filename";
-import { randexFullName } from "./fullname";
+import { randexFileName } from "./filenameX";
+import { randexFullName } from "./fullnameX";
 import { randexNumber } from "./number";
 import { randexRandom } from "./random";
 import { randexSingleName } from "./singleName";
