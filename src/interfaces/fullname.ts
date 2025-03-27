@@ -1,4 +1,4 @@
-import { RandexAlphabet, RandexLength } from "../interfaces";
+import { RandexAlphabet, RandexLength } from "./base";
 
 export interface RandexFullNameOptions {
   alphabet?: RandexAlphabet;

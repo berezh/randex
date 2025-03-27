@@ -1,4 +1,4 @@
-import { RandexLength } from "../interfaces";
+import { RandexLength } from "./base";
 
 interface BasicFileNameOptions {
   fileNameLength?: RandexLength;

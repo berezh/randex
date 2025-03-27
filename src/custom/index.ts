@@ -1,103 +1,20 @@
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexAlphabet, RandexContentOptions, RandexContentRangeOptions, RandexContentSetOptions, RandexLength } from "../interfaces";
-import { RandexEmailOptions } from "./email";
-import { RandexFileNameOptions } from "./filename";
-import { RandexWordOptions } from "./word";
-import { RandomNumberOptions } from "./number";
-import { RandexRangeOptions } from "./random";
-import { RandexUsernameOptions } from "./username";
-import { RandexFullNameOptions } from "./fullname";
-
-export * from "./email";
-export * from "./filename";
-export * from "./word";
-export * from "./username";
-export * from "./fullname";
-export * from "./number";
+import {
+  RandexAlphabet,
+  RandexLength,
+  RandexEmailOptions,
+  RandexFileNameOptions,
+  RandexWordOptions,
+  RandomNumberOptions,
+  RandexUsernameOptions,
+  RandexFullNameOptions,
+} from "../interfaces";
+import { randexRandom } from "./random";
+import { randexWord } from "./word";
 
 export class Randex {
-  // base
-  private static randomString(params: RandexRangeOptions): string {
-    const { length, range } = params;
-    let result = "";
-
-    let currentLength = 0;
-    if (typeof length === "number") {
-      currentLength = length;
-    } else if (Array.isArray(length)) {
-      const [min, max] = length;
-      currentLength = min + RandexSetUtil.randomNumber(max - min + 1);
-    }
-
-    for (let i = 0; i < currentLength; i++) {
-      const index = RandexSetUtil.randomNumber(range.length - 1);
-      if (range.length >= index || range.length <= index) {
-        result += range[index];
-      }
-    }
-
-    return result;
-  }
-
-  private static toContent(options: RandexContentOptions): RandexContentSetOptions | RandexContentRangeOptions {
-    if (RandexTypeParser.isSet(options)) {
-      return {
-        set: options,
-      };
-    } else if (RandexTypeParser.isPartArray(options)) {
-      if (options.length === 2) {
-        const [set, rangeOrLength] = options;
-        return RandexTypeParser.isLength(rangeOrLength)
-          ? {
-              set,
-              length: rangeOrLength,
-            }
-          : {
-              set,
-              range: rangeOrLength,
-            };
-      } else if (options.length === 3) {
-        const [set, range, length] = options;
-        return {
-          set,
-          range,
-          length,
-        };
-      }
-    }
-
-    return options as RandexContentSetOptions | RandexContentRangeOptions;
-  }
-
-  private static toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOptions): RandexRangeOptions {
-    let fullRange = "";
-    const { set, range, length = 1 } = options;
-
-    if (range) {
-      fullRange += range;
-    }
-
-    if (set) {
-      fullRange += RandexSetUtil.toRange(set);
-    }
-
-    return {
-      range: fullRange,
-      length,
-    };
-  }
-
-  public static random(...options: RandexContentOptions[]): string {
-    let result = "";
-    for (const option of options) {
-      const content = Randex.toContent(option);
-      const p = Randex.toRangeOptions(content);
-      result += Randex.randomString(p);
-    }
-
-    return result;
-  }
+  public static random = randexRandom;
 
   public static arrayItem<T>(array: T[]): T;
 
@@ -178,10 +95,10 @@ export class Randex {
     }
 
     if (!domain) {
-      domain = Randex.random([["english", "l"], lowDomainLength]) + "." + Randex.random([["english", "l"], hightDomainLength]);
+      domain = randexRandom([["english", "l"], lowDomainLength]) + "." + randexRandom([["english", "l"], hightDomainLength]);
     }
 
-    return Randex.random([[["english", "l"], "number"], prefixLength]) + "@" + domain;
+    return randexRandom([[["english", "l"], "number"], prefixLength]) + "@" + domain;
   }
 
   public static fileName(options?: RandexFileNameOptions): string;
@@ -221,14 +138,14 @@ export class Randex {
     fileNameLength = RandexSetUtil.getLength(1, fileNameLength, fileNameLength);
 
     if (!extension) {
-      extension = Randex.random([["english", "l"], extensionLength]);
+      extension = randexRandom([["english", "l"], extensionLength]);
     }
 
     return (
-      Randex.random([["english", "number"], RandexSetUtil.fileNameExtraChars, fileNameLength]) +
-      Randex.random(["english", "number"]) +
+      randexRandom([["english", "number"], RandexSetUtil.fileNameExtraChars, fileNameLength]) +
+      randexRandom(["english", "number"]) +
       "." +
-      (extension ? extension.replace(/^\./, "") : Randex.random([["english", "l"], extensionLength]))
+      (extension ? extension.replace(/^\./, "") : randexRandom([["english", "l"], extensionLength]))
     );
   }
 
@@ -300,38 +217,10 @@ export class Randex {
     }
 
     const currentLength = RandexSetUtil.getLength(1, length, [1, 9]);
-    return Randex.random([alphabet, "u"], [[alphabet, "l"], currentLength]);
+    return randexRandom([alphabet, "u"], [[alphabet, "l"], currentLength]);
   }
 
-  public static word(options?: RandexWordOptions): string;
-
-  public static word(length: RandexLength): string;
-
-  public static word(alphabet?: RandexAlphabet): string;
-
-  public static word(alphabet: RandexAlphabet, length: RandexLength): string;
-
-  public static word(p1?: any, p2?: any): string {
-    let length: RandexLength = [2, 10];
-    let alphabet: RandexAlphabet = "english";
-    if (RandexTypeParser.isLength(p1)) {
-      length = p1;
-    } else if (RandexTypeParser.inAlphabet(p1)) {
-      alphabet = p1;
-      if (RandexTypeParser.isLength(p2)) {
-        length = p2;
-      }
-    } else if (typeof p1 === "object") {
-      if (p1.alphabet) {
-        alphabet = p1.alphabet;
-      }
-      if (p1.length) {
-        length = p1.length;
-      }
-    }
-
-    return Randex.random([[alphabet, "l"], length]);
-  }
+  public static word = randexWord;
 
   public static numberArray(length: RandexLength, count: number): number[] {
     let min = 0;
@@ -410,6 +299,6 @@ export class Randex {
     const length: RandexLength | undefined = RandexTypeParser.isLength(options) ? options : options?.length;
     const currentLength = RandexSetUtil.getLength(1, length, [6, 10]);
 
-    return Randex.random(["english", "l"], [[["english", "l"], "number"], currentLength]);
+    return randexRandom(["english", "l"], [[["english", "l"], "number"], currentLength]);
   }
 }
