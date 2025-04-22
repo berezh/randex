@@ -15,7 +15,7 @@ export type RandexRange = number | [number, number];
 
 interface RandexItemBasicOptions {
   set?: RandexSet;
-  range?: string;
+  charRange?: string;
   length?: RandexRange;
 }
 
@@ -23,8 +23,8 @@ export interface RandexContentSetOptions extends Omit<RandexItemBasicOptions, "s
   set: RandexSet;
 }
 
-export interface RandexContentRangeOptions extends Omit<RandexItemBasicOptions, "range"> {
-  range: string;
+export interface RandexContentRangeOptions extends Omit<RandexItemBasicOptions, "charRange"> {
+  charRange: string;
 }
 
 export type RandexContentArrayOptions = [RandexSet, string | RandexRange] | [RandexSet, string, RandexRange];

@@ -35,7 +35,7 @@ describe("markdown", () => {
     expect(value.length).toBe(3);
     //
     value = Randex.random({
-      range: "abc123",
+      charRange: "abc123",
       length: 3,
     });
     expect(value.length).toBe(3);

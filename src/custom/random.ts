@@ -39,13 +39,13 @@ function toContent(options: RandexContentOptions): RandexContentSetOptions | Ran
           }
         : {
             set,
-            range: rangeOrLength,
+            charRange: rangeOrLength,
           };
     } else if (options.length === 3) {
       const [set, range, length] = options;
       return {
         set,
-        range,
+        charRange: range,
         length,
       };
     }
@@ -56,7 +56,7 @@ function toContent(options: RandexContentOptions): RandexContentSetOptions | Ran
 
 function toRangeOptions(options: RandexContentSetOptions | RandexContentRangeOptions): RandexRangeOptions {
   let fullRange = "";
-  const { set, range, length = 1 } = options;
+  const { set, charRange: range, length = 1 } = options;
 
   if (range) {
     fullRange += range;

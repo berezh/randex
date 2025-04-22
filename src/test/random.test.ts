@@ -8,7 +8,7 @@ function inSet(set: RandexSet, length: RandexRange = 1) {
 }
 
 function inRange(range: string, length: RandexRange = 1) {
-  const result = Randex.random({ range, length });
+  const result = Randex.random({ charRange: range, length });
   TestUtil.testInRange(result, range, length);
 }
 

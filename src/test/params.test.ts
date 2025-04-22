@@ -49,7 +49,7 @@ describe("random params", () => {
     const set: RandexSet = "number";
     const range = "abcdefghijklmnopqrstuvwxyz";
 
-    const result1 = Randex.random({ set, range });
+    const result1 = Randex.random({ set, charRange: range });
     const result2 = Randex.random([set, range]);
 
     TestUtil.testInBoth(result1, set, range);
@@ -70,7 +70,7 @@ describe("random params", () => {
     const range = "abcdefghijklmnopqrstuvwxyz";
     const length: RandexRange = 3;
 
-    const result1 = Randex.random({ set, range, length });
+    const result1 = Randex.random({ set, charRange: range, length });
     const result2 = Randex.random([set, range, length]);
 
     TestUtil.testInBoth(result1, set, range, length);
