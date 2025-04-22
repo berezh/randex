@@ -88,7 +88,6 @@ export class TestUtil {
   }
 
   public static isSentenceValid(text: string, length: RandexRange = DEFAULT_SENTENCE_RANGE) {
-    const l = TestUtil.getLength(length);
     const splits = text.split(" ");
 
     if (Array.isArray(length)) {
