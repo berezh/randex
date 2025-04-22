@@ -3,7 +3,7 @@ import { randexBool } from "./bool";
 import { randexEmail } from "./email";
 import { randexFileName } from "./filenameX";
 import { randexFullName } from "./fullnameX";
-import { randexNumber } from "./number";
+import { randexManyNumber, randexNumber } from "./number";
 import { randexRandom } from "./random";
 import { randexManySentence, randexSentence } from "./sentence";
 import { randexSingleName } from "./singleName";
@@ -100,6 +100,6 @@ export class Randex {
   public static sentence = randexSentence;
 
   public static many(count: RandexRange) {
-    return { word: randexManyWord(count), sentence: randexManySentence(count) };
+    return { word: randexManyWord(count), sentence: randexManySentence(count), number: randexManyNumber(count) };
   }
 }

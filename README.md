@@ -27,7 +27,10 @@ Strings:
 
 Numbers:
 - [number](#number)
-- [numberArray](#numberarray)
+
+Many
+- [many](#many)
+
 
 Generic Type:
 - [array](#array)
@@ -400,18 +403,21 @@ Options:
 | ------------------------ | ---- |------------ |
 |decimals| `number` | Number of decimal digits |
 
-## numberArray
+## many
 
-Generates random array with values from a range.
+Generates many defined random methods.
 
 ```ts
 import Randex from "randex";
 
-// Generates an array (with length equals 2) with unique numbers from a range: [0, 3].
-Randex.numberArray(3, 2);
+// Generates three words with english alphabet.
+Randex.many(3).word("english");
 
-// Generates an array (with length equals 3) with unique numbers from a range: [3, 7].
-Randex.numberArray([3, 7], 3);
+// Generates five sentences with french alphabet.
+Randex.many(5).sentence("french");
+
+// Generates an array with length from 2 to 4 of random numbers from 3 to 7.
+Randex.many([2, 4]).number([3, 7]);
 ```
 
 ## array

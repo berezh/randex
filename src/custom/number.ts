@@ -41,3 +41,15 @@ export function randexNumber(p1: any, p2?: any, p3?: any): number {
     }
   }
 }
+
+export function randexManyNumber(count: RandexRange) {
+  function many(length: RandexRange, options?: RandomNumberOptions): number[];
+
+  function many(from: number, to: number, options?: RandomNumberOptions): number[];
+
+  function many(p1: any, p2?: any, p3?: any): number[] {
+    return RandexSetUtil.many(count, () => randexNumber(p1, p2, p3));
+  }
+
+  return many;
+}
