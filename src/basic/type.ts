@@ -1,4 +1,4 @@
-import { RandexCase, RandexAlphabet, RandexItemSet, RandexContentArrayOptions, RandexSet, RandexSingleSet, RandexLength } from "../interfaces";
+import { RandexCase, RandexAlphabet, RandexItemSet, RandexContentArrayOptions, RandexSet, RandexSingleSet, RandexRange } from "../interfaces";
 
 export class RandexTypeParser {
   private static inRange(value: number, range: [number, number]) {
@@ -32,7 +32,7 @@ export class RandexTypeParser {
   }
 
   // RandomLength
-  public static isLength(value: any): value is RandexLength {
+  public static isLength(value: any): value is RandexRange {
     if (typeof value === "number") {
       return true;
     } else if (Array.isArray(value) && value.length === 2) {

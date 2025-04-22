@@ -1,5 +1,5 @@
 import { RandexSetUtil } from "../basic/set";
-import { RandexLength, RandomNumberOptions } from "../interfaces";
+import { RandexRange, RandomNumberOptions } from "../interfaces";
 
 function getNumberBase(decimals: number) {
   return decimals === 1 ? 10 : Math.pow(10, decimals);
@@ -17,14 +17,14 @@ function innerRandomNumber(from: number, to: number, decimals?: number) {
   const fromV = getNumberValue(from, decimals);
   const toV = getNumberValue(to, decimals);
 
-  let result = RandexSetUtil.randomNumber(toV - fromV + 1) + fromV;
+  let result = RandexSetUtil.randomRangeNumber(fromV, toV);
   if (typeof decimals === "number") {
     result = result / getNumberBase(decimals);
   }
   return result;
 }
 
-export function randexNumber(length: RandexLength, options?: RandomNumberOptions): number;
+export function randexNumber(length: RandexRange, options?: RandomNumberOptions): number;
 
 export function randexNumber(from: number, to: number, options?: RandomNumberOptions): number;
 

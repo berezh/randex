@@ -1,13 +1,13 @@
 import { TestUtil } from "./test-util";
-import { RandexLength, RandexSet } from "../interfaces";
+import { RandexRange, RandexSet } from "../interfaces";
 import { Randex } from "../custom";
 
-function inSet(set: RandexSet, length: RandexLength = 1) {
+function inSet(set: RandexSet, length: RandexRange = 1) {
   const result = Randex.random({ set, length });
   TestUtil.testInSet(result, set, length);
 }
 
-function inRange(range: string, length: RandexLength = 1) {
+function inRange(range: string, length: RandexRange = 1) {
   const result = Randex.random({ range, length });
   TestUtil.testInRange(result, range, length);
 }
@@ -29,7 +29,7 @@ describe("random", () => {
   });
 
   it("result 1: number", () => {
-    const length: RandexLength = [0, 4];
+    const length: RandexRange = [0, 4];
     const result: Record<number, number> = {};
     TestUtil.loop(() => {
       const l = Randex.random({ set: "english", length }).length;
@@ -42,7 +42,7 @@ describe("random", () => {
   });
 
   it("result 2: number range", () => {
-    const length: RandexLength = [5, 8];
+    const length: RandexRange = [5, 8];
     const result: Record<number, number> = {};
     TestUtil.loop(() => {
       const l = Randex.random({ set: "english", length }).length;

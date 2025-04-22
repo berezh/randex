@@ -1,10 +1,11 @@
-import { RandexLength } from "../interfaces";
+import { RandexRange } from "../interfaces";
 import { randexBool } from "./bool";
 import { randexEmail } from "./email";
 import { randexFileName } from "./filenameX";
 import { randexFullName } from "./fullnameX";
 import { randexNumber } from "./number";
 import { randexRandom } from "./random";
+import { randexManySentence, randexSentence } from "./sentence";
 import { randexSingleName } from "./singleName";
 import { randexUsername } from "./username";
 import { randexManyWord, randexWord } from "./word";
@@ -59,9 +60,7 @@ export class Randex {
 
   public static singleName = randexSingleName;
 
-  public static word = randexWord;
-
-  public static numberArray(length: RandexLength, count: number): number[] {
+  public static numberArray(length: RandexRange, count: number): number[] {
     let min = 0;
     let max = 0;
     const result: number[] = [];
@@ -96,7 +95,11 @@ export class Randex {
 
   public static username = randexUsername;
 
-  public static many(count: number) {
-    return { word: randexManyWord(count) };
+  public static word = randexWord;
+
+  public static sentence = randexSentence;
+
+  public static many(count: RandexRange) {
+    return { word: randexManyWord(count), sentence: randexManySentence(count) };
   }
 }

@@ -1,11 +1,11 @@
-import { RandexLength } from "./base";
+import { RandexRange } from "./base";
 
 interface BasicFileNameOptions {
-  fileNameLength?: RandexLength;
+  fileNameLength?: RandexRange;
 }
 
 interface ExtensionLengthFileNameOptions {
-  extensionLength?: RandexLength;
+  extensionLength?: RandexRange;
 }
 
 interface ExtensionFileNameOptions {

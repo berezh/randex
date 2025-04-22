@@ -1,6 +1,6 @@
 import { RandexSetUtil } from "../basic/set";
 import { Randex } from "../custom";
-import { RandexLength } from "../interfaces";
+import { RandexRange } from "../interfaces";
 import { TestUtil } from "./test-util";
 
 const r = RandexSetUtil;
@@ -13,7 +13,7 @@ function splitFileName(fullFileName: string) {
   return [fileName, extension];
 }
 
-function testFileName(options: { fullFileName: string; fileNameLength?: RandexLength; extensionLength?: RandexLength; extension?: string }) {
+function testFileName(options: { fullFileName: string; fileNameLength?: RandexRange; extensionLength?: RandexRange; extension?: string }) {
   const { fullFileName, fileNameLength = r.defaultFileNameLength, extensionLength = r.defaultExtensionLength, extension } = options;
 
   const [fileName, fileExtension] = splitFileName(fullFileName);
@@ -36,7 +36,7 @@ describe("randomFileName", () => {
   });
 
   it("params: fileNameLength", () => {
-    const fileNameLength: RandexLength = [10, 15];
+    const fileNameLength: RandexRange = [10, 15];
 
     TestUtil.loop(() => {
       let fullFileName = Randex.fileName({ fileNameLength });
@@ -48,7 +48,7 @@ describe("randomFileName", () => {
   });
 
   it("params: extensionLength", () => {
-    const extensionLength: RandexLength = [10, 15];
+    const extensionLength: RandexRange = [10, 15];
 
     TestUtil.loop(() => {
       let fullFileName = Randex.fileName({ extensionLength });
@@ -60,7 +60,7 @@ describe("randomFileName", () => {
   });
 
   it("params2: extension", () => {
-    const fileNameLength: RandexLength = [10, 15];
+    const fileNameLength: RandexRange = [10, 15];
     const extension = "xml";
 
     TestUtil.loop(() => {

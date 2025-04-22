@@ -1,4 +1,4 @@
-import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet, RandexLength } from "../interfaces";
+import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet, RandexRange } from "../interfaces";
 import { RandexTypeParser } from "./type";
 
 const hex = "0123456789ABCDEFabcdef";
@@ -16,17 +16,17 @@ const russianLower = "абвгдеёжзийклмнопрстуфхцчшщъы
 const russianUpper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
 export class RandexSetUtil {
-  public static readonly defaultFileNameLength: RandexLength = [3, 10];
+  public static readonly defaultFileNameLength: RandexRange = [3, 10];
 
-  public static readonly defaultExtensionLength: RandexLength = [2, 5];
+  public static readonly defaultExtensionLength: RandexRange = [2, 5];
 
   public static readonly fileNameExtraChars = ""; //"-_.";
 
-  public static readonly defaultEmailPrefixLength: RandexLength = [6, 10];
+  public static readonly defaultEmailPrefixLength: RandexRange = [6, 10];
 
-  public static readonly defaultHightDomainEmailLength: RandexLength = [1, 6];
+  public static readonly defaultHightDomainEmailLength: RandexRange = [1, 6];
 
-  public static readonly defaultLowDomainEmailLength: RandexLength = [2, 4];
+  public static readonly defaultLowDomainEmailLength: RandexRange = [2, 4];
 
   private static toSingleRange(itemSet: RandexItemSet) {
     if (Array.isArray(itemSet)) {
@@ -91,7 +91,7 @@ export class RandexSetUtil {
     return result;
   }
 
-  public static getLength(reservedChars: number, length: RandexLength | undefined, defaultLength: RandexLength): RandexLength {
+  public static getLength(reservedChars: number, length: RandexRange | undefined, defaultLength: RandexRange): RandexRange {
     let result = defaultLength;
 
     if (typeof length === "number" && length > reservedChars) {
@@ -112,13 +112,22 @@ export class RandexSetUtil {
     return result;
   }
 
-  public static randomNumber(length: number) {
+  public static randomSingleNumber(length: number) {
     return Math.floor(Math.random() * length);
   }
 
-  public static many<TItem>(count: number, callback: () => TItem): TItem[] {
+  public static randomRangeNumber(min: number, max: number) {
+    const minN = Math.min(min, max);
+    const maxN = Math.max(min, max);
+    return RandexSetUtil.randomSingleNumber(maxN - minN + 1) + minN;
+  }
+
+  public static many<TItem>(count: RandexRange, callback: () => TItem): TItem[] {
     const result: TItem[] = [];
-    for (let i = 0; i < count; i++) {
+
+    const length = Array.isArray(count) ? RandexSetUtil.randomRangeNumber(count[0], count[1]) : count;
+
+    for (let i = 0; i < length; i++) {
       result.push(callback());
     }
     return result;

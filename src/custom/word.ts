@@ -1,24 +1,19 @@
+import { DEFAULT_WORD_RANGE } from "../basic/const";
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexAlphabet, RandexLength, RandexWordOptions } from "../interfaces";
+import { RandexAlphabet, RandexRange, RandexWordOptions } from "../interfaces";
 import { randexRandom } from "./random";
-
-// export type RandexWordType =
-//   | ((options?: RandexWordOptions) => string)
-//   | ((length: RandexLength) => string)
-//   | ((alphabet?: RandexAlphabet) => string)
-//   | ((alphabet: RandexAlphabet, length: RandexLength) => string);
 
 export function randexWord(options?: RandexWordOptions): string;
 
-export function randexWord(length: RandexLength): string;
+export function randexWord(length: RandexRange): string;
 
 export function randexWord(alphabet?: RandexAlphabet): string;
 
-export function randexWord(alphabet: RandexAlphabet, length: RandexLength): string;
+export function randexWord(alphabet: RandexAlphabet, length: RandexRange): string;
 
 export function randexWord(p1?: any, p2?: any): string {
-  let length: RandexLength = [2, 10];
+  let length: RandexRange = DEFAULT_WORD_RANGE;
   let alphabet: RandexAlphabet = "english";
   if (RandexTypeParser.isLength(p1)) {
     length = p1;
@@ -39,14 +34,14 @@ export function randexWord(p1?: any, p2?: any): string {
   return randexRandom([[alphabet, "l"], length]);
 }
 
-export function randexManyWord(count: number) {
+export function randexManyWord(count: RandexRange) {
   function many(options?: RandexWordOptions): string[];
 
-  function many(length: RandexLength): string[];
+  function many(length: RandexRange): string[];
 
   function many(alphabet?: RandexAlphabet): string[];
 
-  function many(alphabet: RandexAlphabet, length: RandexLength): string[];
+  function many(alphabet: RandexAlphabet, length: RandexRange): string[];
 
   function many(p1?: any, p2?: any): string[] {
     return RandexSetUtil.many(count, () => randexWord(p1, p2));

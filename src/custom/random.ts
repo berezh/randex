@@ -11,11 +11,11 @@ function randomString(params: RandexRangeOptions): string {
     currentLength = length;
   } else if (Array.isArray(length)) {
     const [min, max] = length;
-    currentLength = min + RandexSetUtil.randomNumber(max - min + 1);
+    currentLength = RandexSetUtil.randomRangeNumber(min, max);
   }
 
   for (let i = 0; i < currentLength; i++) {
-    const index = RandexSetUtil.randomNumber(range.length - 1);
+    const index = RandexSetUtil.randomSingleNumber(range.length - 1);
     if (range.length >= index || range.length <= index) {
       result += range[index];
     }

@@ -1,9 +1,9 @@
 import { RandexSetUtil } from "../basic/set";
-import { RandexLength } from "../interfaces";
+import { RandexRange } from "../interfaces";
 
-const defaultLength: RandexLength = [1, 10];
+const defaultLength: RandexRange = [1, 10];
 
-function getLength(reservedChars: number, length: RandexLength | undefined, resultLength: RandexLength) {
+function getLength(reservedChars: number, length: RandexRange | undefined, resultLength: RandexRange) {
   const result = RandexSetUtil.getLength(reservedChars, length, defaultLength);
   if (typeof resultLength === "number") {
     expect(result).toBe(resultLength);

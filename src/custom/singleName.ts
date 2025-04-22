@@ -1,18 +1,18 @@
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexAlphabet, RandexLength, RandexWordOptions } from "../interfaces";
+import { RandexAlphabet, RandexRange, RandexWordOptions } from "../interfaces";
 import { randexRandom } from "./random";
 
 export function randexSingleName(options?: RandexWordOptions): string;
 
-export function randexSingleName(length: RandexLength): string;
+export function randexSingleName(length: RandexRange): string;
 
 export function randexSingleName(alphabet?: RandexAlphabet): string;
 
-export function randexSingleName(alphabet: RandexAlphabet, length: RandexLength): string;
+export function randexSingleName(alphabet: RandexAlphabet, length: RandexRange): string;
 
 export function randexSingleName(p1?: any, p2?: any): string {
-  let length: RandexLength = 0;
+  let length: RandexRange = 0;
   let alphabet: RandexAlphabet = "english";
   if (RandexTypeParser.isLength(p1)) {
     length = p1;

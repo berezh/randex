@@ -1,12 +1,12 @@
-import { RandexLength } from "./base";
+import { RandexRange } from "./base";
 
 interface BasicEmailOptions {
-  prefixLength?: RandexLength;
+  prefixLength?: RandexRange;
 }
 
 interface DomainLengthEmailOptions {
-  hightDomainLength?: RandexLength;
-  lowDomainLength?: RandexLength;
+  hightDomainLength?: RandexRange;
+  lowDomainLength?: RandexRange;
 }
 
 interface DomainEmailOptions {

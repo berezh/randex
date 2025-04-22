@@ -11,12 +11,12 @@ export type RandexAlphabetCase = [RandexAlphabet, RandexCase];
 export type RandexItemSet = RandexSingleSet | RandexAlphabetCase;
 export type RandexSet = RandexItemSet | RandexItemSet[];
 
-export type RandexLength = number | [number, number];
+export type RandexRange = number | [number, number];
 
 interface RandexItemBasicOptions {
   set?: RandexSet;
   range?: string;
-  length?: RandexLength;
+  length?: RandexRange;
 }
 
 export interface RandexContentSetOptions extends Omit<RandexItemBasicOptions, "set"> {
@@ -27,6 +27,6 @@ export interface RandexContentRangeOptions extends Omit<RandexItemBasicOptions, 
   range: string;
 }
 
-export type RandexContentArrayOptions = [RandexSet, string | RandexLength] | [RandexSet, string, RandexLength];
+export type RandexContentArrayOptions = [RandexSet, string | RandexRange] | [RandexSet, string, RandexRange];
 
 export type RandexContentOptions = RandexContentSetOptions | RandexContentRangeOptions | RandexContentArrayOptions | RandexSet;
