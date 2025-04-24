@@ -276,7 +276,7 @@ Options:
 | ------------------------ | ---- |------------ |
 |length|[RandexRange](#randexrange) | Length of chars. Default: [6,10] |
 
-## randomEmail
+## email
 
 Randoms an email.
 
@@ -364,7 +364,7 @@ Options:
 |length|[RandexRange](#randexrange) | Length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
-## randomFullName
+## fullName
 
 Randoms a full name of the person.
 
@@ -520,7 +520,7 @@ Randex.random(
 
 ## Types
 
-## RandexRange
+### RandexRange
 
 Possible types:
 
@@ -538,7 +538,7 @@ Randex.random(["bit", 5]);
 Randex.random(["bit", [5, 10]]);
 ```
 
-## RandexSet
+### RandexSet
 
 Possible types:
 
@@ -558,7 +558,7 @@ Randex.random("spanish");
 Randex.random(["spanish", "l"]);
 ```
 
-## RandexAlphabet
+### RandexAlphabet
 
 An alphabet of chars
 
@@ -572,7 +572,7 @@ Randex.random({ set: "spanish" });
 Randex.random("spanish");
 ```
 
-## RandexKit
+### RandexKit
 
 A kit of chars
 
@@ -586,7 +586,7 @@ Randex.random({ set: "hex" });
 Randex.random("hex");
 ```
 
-## RandexCase
+### RandexCase
 
 A case of alphabet
 
