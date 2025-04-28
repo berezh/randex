@@ -7,3 +7,4 @@ export * from "./random";
 export * from "./username";
 export * from "./word";
 export * from "./sentence";
+export * from "./phrase";

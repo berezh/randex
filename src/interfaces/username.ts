@@ -1,5 +1,5 @@
-import { RandexRange } from "./base";
+import { RandexNumberRange } from "./base";
 
 export interface RandexUsernameOptions {
-  length?: RandexRange;
+  length?: RandexNumberRange;
 }

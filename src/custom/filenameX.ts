@@ -1,19 +1,19 @@
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexFileNameOptions, RandexRange } from "../interfaces";
+import { RandexFileNameOptions, RandexNumberRange } from "../interfaces";
 import { randexRandom } from "./random";
 
 export function randexFileName(options?: RandexFileNameOptions): string;
 
-export function randexFileName(fileNameLength: RandexRange, extensionLength?: RandexRange): string;
+export function randexFileName(fileNameLength: RandexNumberRange, extensionLength?: RandexNumberRange): string;
 
-export function randexFileName(fileNameLength: RandexRange, extension: string): string;
+export function randexFileName(fileNameLength: RandexNumberRange, extension: string): string;
 
 export function randexFileName(extension: string): string;
 
 export function randexFileName(p1?: any, p2?: any): string {
   let fileNameLength = RandexSetUtil.defaultFileNameLength;
-  let extensionLength: RandexRange = RandexSetUtil.defaultExtensionLength;
+  let extensionLength: RandexNumberRange = RandexSetUtil.defaultExtensionLength;
   let extension = "";
 
   if (RandexTypeParser.isLength(p1)) {

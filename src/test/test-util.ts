@@ -1,9 +1,9 @@
-import { DEFAULT_SENTENCE_RANGE, DEFAULT_WORD_RANGE } from "../basic/const";
+import { DEFAULT_PHRASE_RANGE, DEFAULT_SENTENCE_RANGE, DEFAULT_WORD_RANGE } from "../basic/const";
 import { RandexSetUtil } from "../basic/set";
-import { RandexRange, RandexSet } from "../interfaces";
+import { RandexNumberRange, RandexSet } from "../interfaces";
 
 export class TestUtil {
-  public static testIn(value: string, length: RandexRange = 1, action: () => void) {
+  public static testIn(value: string, length: RandexNumberRange = 1, action: () => void) {
     if (typeof length === "number") {
       expect(value.length).toBe(length);
     } else if (Array.isArray(length)) {
@@ -22,25 +22,25 @@ export class TestUtil {
     }
   }
 
-  public static testInSet(value: string, set: RandexSet, length: RandexRange = 1) {
+  public static testInSet(value: string, set: RandexSet, length: RandexNumberRange = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inSet(value, set)).toBeTruthy();
     });
   }
 
-  public static testInSetRange(value: string, set: RandexSet, range: string, length: RandexRange = 1) {
+  public static testInSetRange(value: string, set: RandexSet, range: string, length: RandexNumberRange = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inSet(value, set, range)).toBeTruthy();
     });
   }
 
-  public static testInRange(value: string, range: string, length: RandexRange = 1) {
+  public static testInRange(value: string, range: string, length: RandexNumberRange = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inRange(value, range)).toBeTruthy();
     });
   }
 
-  public static testInBoth(value: string, set: RandexSet, range: string, length: RandexRange = 1) {
+  public static testInBoth(value: string, set: RandexSet, range: string, length: RandexNumberRange = 1) {
     TestUtil.testIn(value, length, () => {
       expect(TestUtil.inBoth(value, set, range)).toBeTruthy();
     });
@@ -82,12 +82,12 @@ export class TestUtil {
     return String(email).match(/^[A-Z][a-z]{1,}$/);
   }
 
-  public static isWordValid(text: string, length: RandexRange = DEFAULT_WORD_RANGE) {
+  public static isWordValid(text: string, length: RandexNumberRange = DEFAULT_WORD_RANGE) {
     const l = TestUtil.getLength(length);
     return String(text).match(new RegExp(`\^[a-z]\{${l}\}\$`));
   }
 
-  public static isSentenceValid(text: string, length: RandexRange = DEFAULT_SENTENCE_RANGE) {
+  public static isSentenceValid(text: string, length: RandexNumberRange = DEFAULT_SENTENCE_RANGE) {
     const splits = text.split(" ");
 
     if (Array.isArray(length)) {
@@ -98,12 +98,23 @@ export class TestUtil {
     }
   }
 
-  public static isUpperCharValid(value: string, length: RandexRange = 1) {
+  public static isPhraseValid(text: string, length: RandexNumberRange = DEFAULT_PHRASE_RANGE) {
+    const splits = text.split(" ");
+
+    if (Array.isArray(length)) {
+      const [min, max] = length;
+      return splits.length >= min && splits.length <= max;
+    } else {
+      return splits.length === length;
+    }
+  }
+
+  public static isUpperCharValid(value: string, length: RandexNumberRange = 1) {
     const l = TestUtil.getLength(length);
     return String(value).match(new RegExp(`\^[A-Z]\{${l}\}\$`));
   }
 
-  public static isLowerCharValid(value: string, length: RandexRange = 1) {
+  public static isLowerCharValid(value: string, length: RandexNumberRange = 1) {
     const l = TestUtil.getLength(length);
     return String(value).match(new RegExp(`^[a-z]{${l}}$`));
   }
@@ -122,7 +133,7 @@ export class TestUtil {
     return value >= range[0] && value <= range[1];
   }
 
-  private static getLength(length: RandexRange) {
+  private static getLength(length: RandexNumberRange) {
     return Array.isArray(length) ? `${length[0]},${length[1]}` : length;
   }
 }

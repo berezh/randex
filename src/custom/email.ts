@@ -1,18 +1,18 @@
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexEmailOptions, RandexRange } from "../interfaces";
+import { RandexEmailOptions, RandexNumberRange } from "../interfaces";
 import { randexRandom } from "./random";
 
 export function randexEmail(options?: RandexEmailOptions): string;
 
-export function randexEmail(prefixLength: RandexRange, lowDomainLength?: RandexRange, hightDomainLength?: RandexRange): string;
+export function randexEmail(prefixLength: RandexNumberRange, lowDomainLength?: RandexNumberRange, hightDomainLength?: RandexNumberRange): string;
 
 export function randexEmail(domain: string): string;
 
 export function randexEmail(p1?: any, p2?: any, p3?: any): string {
-  let prefixLength: RandexRange = RandexSetUtil.defaultEmailPrefixLength;
-  let hightDomainLength: RandexRange = RandexSetUtil.defaultHightDomainEmailLength;
-  let lowDomainLength: RandexRange = RandexSetUtil.defaultLowDomainEmailLength;
+  let prefixLength: RandexNumberRange = RandexSetUtil.defaultEmailPrefixLength;
+  let hightDomainLength: RandexNumberRange = RandexSetUtil.defaultHightDomainEmailLength;
+  let lowDomainLength: RandexNumberRange = RandexSetUtil.defaultLowDomainEmailLength;
   let domain = "";
 
   if (RandexTypeParser.isLength(p1)) {

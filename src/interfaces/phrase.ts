@@ -1,6 +1,6 @@
 import { RandexAlphabet, RandexNumberRange } from "./base";
 
-export interface RandexWordOptions {
+export interface RandexPhraseOptions {
   alphabet?: RandexAlphabet;
-  length?: RandexNumberRange;
+  words?: RandexNumberRange;
 }

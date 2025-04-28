@@ -1,19 +1,19 @@
 import { DEFAULT_SENTENCE_RANGE } from "../basic/const";
 import { RandexSetUtil } from "../basic/set";
 import { RandexTypeParser } from "../basic/type";
-import { RandexAlphabet, RandexRange, RandexSentenceOptions } from "../interfaces";
+import { RandexAlphabet, RandexNumberRange, RandexSentenceOptions } from "../interfaces";
 import { randexManyWord } from "./word";
 
 export function randexSentence(options?: RandexSentenceOptions): string;
 
-export function randexSentence(length: RandexRange): string;
+export function randexSentence(length: RandexNumberRange): string;
 
 export function randexSentence(alphabet?: RandexAlphabet): string;
 
-export function randexSentence(alphabet: RandexAlphabet, length: RandexRange): string;
+export function randexSentence(alphabet: RandexAlphabet, length: RandexNumberRange): string;
 
 export function randexSentence(p1?: any, p2?: any): string {
-  let length: RandexRange = DEFAULT_SENTENCE_RANGE;
+  let length: RandexNumberRange = DEFAULT_SENTENCE_RANGE;
   let alphabet: RandexAlphabet = "english";
 
   if (RandexTypeParser.isLength(p1)) {
@@ -28,8 +28,8 @@ export function randexSentence(p1?: any, p2?: any): string {
     if (options.alphabet) {
       alphabet = options.alphabet;
     }
-    if (options.wordRange) {
-      length = options.wordRange;
+    if (options.words) {
+      length = options.words;
     }
   }
 
@@ -50,14 +50,14 @@ export function randexSentence(p1?: any, p2?: any): string {
     .join(" ");
 }
 
-export function randexManySentence(count: RandexRange) {
+export function randexManySentence(count: RandexNumberRange) {
   function many(options?: RandexSentenceOptions): string[];
 
-  function many(length: RandexRange): string[];
+  function many(words: RandexNumberRange): string[];
 
   function many(alphabet?: RandexAlphabet): string[];
 
-  function many(alphabet: RandexAlphabet, length: RandexRange): string[];
+  function many(alphabet: RandexAlphabet, words: RandexNumberRange): string[];
 
   function many(p1?: any, p2?: any): string[] {
     return RandexSetUtil.many(count, () => randexSentence(p1, p2));

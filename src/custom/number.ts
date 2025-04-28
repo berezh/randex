@@ -1,5 +1,5 @@
 import { RandexSetUtil } from "../basic/set";
-import { RandexRange, RandomNumberOptions } from "../interfaces";
+import { RandexNumberRange, RandomNumberOptions } from "../interfaces";
 
 function getNumberBase(decimals: number) {
   return decimals === 1 ? 10 : Math.pow(10, decimals);
@@ -24,7 +24,7 @@ function innerRandomNumber(from: number, to: number, decimals?: number) {
   return result;
 }
 
-export function randexNumber(length: RandexRange, options?: RandomNumberOptions): number;
+export function randexNumber(length: RandexNumberRange, options?: RandomNumberOptions): number;
 
 export function randexNumber(from: number, to: number, options?: RandomNumberOptions): number;
 
@@ -42,8 +42,8 @@ export function randexNumber(p1: any, p2?: any, p3?: any): number {
   }
 }
 
-export function randexManyNumber(count: RandexRange) {
-  function many(length: RandexRange, options?: RandomNumberOptions): number[];
+export function randexManyNumber(count: RandexNumberRange) {
+  function many(length: RandexNumberRange, options?: RandomNumberOptions): number[];
 
   function many(from: number, to: number, options?: RandomNumberOptions): number[];
 

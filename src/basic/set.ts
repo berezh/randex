@@ -1,4 +1,4 @@
-import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet, RandexRange } from "../interfaces";
+import { RandexCase, RandexAlphabetCase, RandexItemSet, RandexSet, RandexNumberRange } from "../interfaces";
 import { RandexTypeParser } from "./type";
 
 const hex = "0123456789ABCDEFabcdef";
@@ -16,17 +16,17 @@ const russianLower = "абвгдеёжзийклмнопрстуфхцчшщъы
 const russianUpper = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
 export class RandexSetUtil {
-  public static readonly defaultFileNameLength: RandexRange = [3, 10];
+  public static readonly defaultFileNameLength: RandexNumberRange = [3, 10];
 
-  public static readonly defaultExtensionLength: RandexRange = [2, 5];
+  public static readonly defaultExtensionLength: RandexNumberRange = [2, 5];
 
   public static readonly fileNameExtraChars = ""; //"-_.";
 
-  public static readonly defaultEmailPrefixLength: RandexRange = [6, 10];
+  public static readonly defaultEmailPrefixLength: RandexNumberRange = [6, 10];
 
-  public static readonly defaultHightDomainEmailLength: RandexRange = [1, 6];
+  public static readonly defaultHightDomainEmailLength: RandexNumberRange = [1, 6];
 
-  public static readonly defaultLowDomainEmailLength: RandexRange = [2, 4];
+  public static readonly defaultLowDomainEmailLength: RandexNumberRange = [2, 4];
 
   private static toSingleRange(itemSet: RandexItemSet) {
     if (Array.isArray(itemSet)) {
@@ -91,7 +91,7 @@ export class RandexSetUtil {
     return result;
   }
 
-  public static getLength(reservedChars: number, length: RandexRange | undefined, defaultLength: RandexRange): RandexRange {
+  public static getLength(reservedChars: number, length: RandexNumberRange | undefined, defaultLength: RandexNumberRange): RandexNumberRange {
     let result = defaultLength;
 
     if (typeof length === "number" && length > reservedChars) {
@@ -122,7 +122,7 @@ export class RandexSetUtil {
     return RandexSetUtil.randomSingleNumber(maxN - minN + 1) + minN;
   }
 
-  public static many<TItem>(count: RandexRange, callback: () => TItem): TItem[] {
+  public static many<TItem>(count: RandexNumberRange, callback: () => TItem): TItem[] {
     const result: TItem[] = [];
 
     const length = Array.isArray(count) ? RandexSetUtil.randomRangeNumber(count[0], count[1]) : count;

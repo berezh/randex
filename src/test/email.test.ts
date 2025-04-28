@@ -1,6 +1,6 @@
 import { RandexSetUtil } from "../basic/set";
 import { Randex } from "../custom";
-import { RandexRange } from "../interfaces";
+import { RandexNumberRange } from "../interfaces";
 import { TestUtil } from "./test-util";
 
 const r = RandexSetUtil;
@@ -11,7 +11,7 @@ function splitEmail(email: string) {
   return [prefix, domain, lowDomain, hightDomain];
 }
 
-function testEmail(options: { email: string; prefixLength?: RandexRange; hightDomainLength?: RandexRange; lowDomainLength?: RandexRange; domain?: string }) {
+function testEmail(options: { email: string; prefixLength?: RandexNumberRange; hightDomainLength?: RandexNumberRange; lowDomainLength?: RandexNumberRange; domain?: string }) {
   const {
     email,
     prefixLength = r.defaultEmailPrefixLength,
@@ -41,7 +41,7 @@ describe("randomEmail", () => {
   });
 
   it("options: prefixLength", () => {
-    const prefixLength: RandexRange = [10, 15];
+    const prefixLength: RandexNumberRange = [10, 15];
     TestUtil.loop(() => {
       let email = Randex.email({ prefixLength });
       testEmail({ email, prefixLength });
@@ -52,8 +52,8 @@ describe("randomEmail", () => {
   });
 
   it("options: hightDomainLength, lowDomainLength", () => {
-    const hightDomainLength: RandexRange = 8;
-    const lowDomainLength: RandexRange = 12;
+    const hightDomainLength: RandexNumberRange = 8;
+    const lowDomainLength: RandexNumberRange = 12;
     TestUtil.loop(() => {
       let email = Randex.email({ hightDomainLength, lowDomainLength });
       testEmail({ email, hightDomainLength, lowDomainLength });

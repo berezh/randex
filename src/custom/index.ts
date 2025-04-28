@@ -1,9 +1,10 @@
-import { RandexRange } from "../interfaces";
+import { RandexNumberRange } from "../interfaces";
 import { randexBool } from "./bool";
 import { randexEmail } from "./email";
 import { randexFileName } from "./filenameX";
 import { randexFullName } from "./fullnameX";
 import { randexManyNumber, randexNumber } from "./number";
+import { randexManyPhrase, randexPhrase } from "./phrase";
 import { randexRandom } from "./random";
 import { randexManySentence, randexSentence } from "./sentence";
 import { randexSingleName } from "./singleName";
@@ -68,7 +69,9 @@ export class Randex {
 
   public static sentence = randexSentence;
 
-  public static many(count: RandexRange) {
-    return { word: randexManyWord(count), sentence: randexManySentence(count), number: randexManyNumber(count) };
+  public static phrase = randexPhrase;
+
+  public static many(count: RandexNumberRange) {
+    return { word: randexManyWord(count), phrase: randexManyPhrase(count), sentence: randexManySentence(count), number: randexManyNumber(count) };
   }
 }

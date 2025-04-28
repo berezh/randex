@@ -18,12 +18,13 @@ Strings:
 
 - [random](#random)
 - [word](#word)
-- [sentence](#sentence)
 - [fileName](#filename)
 - [username](#username)
 - [email](#email)
 - [singleName](#singlename)
 - [fullName](#fullname)
+- [phrase](#phrase)
+- [sentence](#sentence)
 
 Numbers:
 - [number](#number)
@@ -120,7 +121,7 @@ Options:
 | ------------------------ | ---- |------------ |
 |set|[RandexSet](#randexset) | Defined chars|
 |charRange|`string`| Range or custom chars |
-|length|[RandexRange](#randexrange) | Length of chars |
+|length|[RandexNumberRange](#randexnumberrange) | Length of chars |
 
 ## word
 
@@ -161,43 +162,7 @@ Randex.word("french", 10);
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|[RandexRange](#randexrange) | Length of chars. Default: [2,10] |
-|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
-
-## sentence
-
-Randoms a sentence.
-
-```ts
-import Randex from "randex";
-
-// default word range is from 3 to 15
-Randex.sentence();
-// Gpgowb te vdancy poluwsd sswl aqxq.
-
-// with 5 words
-Randex.sentence({ wordRange: 5 });
-// or:
-Randex.sentence(5);
-// Xja wyfbhnhtl ptn shemiukme poyyjtr.
-
-// with words range
-Randex.sentence({ wordRange: [3, 6] });
-// or:
-Randex.sentence([3, 6]);
-// Vg nfobxcwg tmhfu hiqonw.
-
-// with french alphabet
-Randex.sentence({ alphabet: "french" });
-// or:
-Randex.sentence("french");
-// Êid æeâoô déèbfûûæ aôç udôûsèqpa ygyïœùuè oê rmânacgwnc kuàq qêœççzœx iolîœsqàu aùàrpëhuâh rèèfhmæ klltu.
-```
-
-Options:
-| Name | Type| Description|
-| ------------------------ | ---- |------------ |
-|wordRange|[RandexRange](#randexrange) | Range of words. Default: [3,15] |
+|length|[RandexNumberRange](#randexnumberrange) | Length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 ## fileName
@@ -243,8 +208,8 @@ Randex.fileName(8, "xml");
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|fileNameLength|[RandexRange](#randexrange) | Length of file name (not including extension). Default: [3,10] |
-|extensionLength|[RandexRange](#randexrange) | Length of extension (not including file name) chars. Default: [2,5] |
+|fileNameLength|[RandexNumberRange](#randexnumberrange) | Length of file name (not including extension). Default: [3,10] |
+|extensionLength|[RandexNumberRange](#randexnumberrange) | Length of extension (not including file name) chars. Default: [2,5] |
 |extension| `string`| File extension. |
 
 ## username
@@ -274,7 +239,7 @@ Randex.username([2, 5]);
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|[RandexRange](#randexrange) | Length of chars. Default: [6,10] |
+|length|[RandexNumberRange](#randexnumberrange) | Length of chars. Default: [6,10] |
 
 ## email
 
@@ -317,9 +282,9 @@ randomEmail("test.com");
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|prefixLength|[RandexRange](#randexrange) | Length of email prefix (chars before `@`). Default: [6, 10] |
-|hightDomainLength|[RandexRange](#randexrange) | Length of hight domain part (example: test.<b>com</b>). Default: [1,6] |
-|lowDomainLength|[RandexRange](#randexrange) | Length of low domain part (example: <b>test</b>.com). Default: [4,2] |
+|prefixLength|[RandexNumberRange](#randexnumberrange) | Length of email prefix (chars before `@`). Default: [6, 10] |
+|hightDomainLength|[RandexNumberRange](#randexnumberrange) | Length of hight domain part (example: test.<b>com</b>). Default: [1,6] |
+|lowDomainLength|[RandexNumberRange](#randexnumberrange) | Length of low domain part (example: <b>test</b>.com). Default: [4,2] |
 |domain| `string`| Defined domain. |
 
 ## singleName
@@ -361,7 +326,7 @@ Randex.singleName("french", 10);
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|length|[RandexRange](#randexrange) | Length of chars. Default: [2,10] |
+|length|[RandexNumberRange](#randexnumberrange) | Length of chars. Default: [2,10] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 ## fullName
@@ -379,8 +344,81 @@ Randex.fullName();
 Options:
 | Name | Type| Description|
 | ------------------------ | ---- |------------ |
-|firstLength|[RandexRange](#randexrange) | First name length of chars. Default: [2, 10] |
-|secondLength|[RandexRange](#randexrange) | Second name length of chars. Default: [2,10] |
+|firstLength|[RandexNumberRange](#randexnumberrange) | First name length of chars. Default: [2, 10] |
+|secondLength|[RandexNumberRange](#randexnumberrange) | Second name length of chars. Default: [2,10] |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+## phrase
+
+Randoms a phrase.
+
+```ts
+import Randex from "randex";
+
+// default word range is from 2 to 9
+Randex.phrase();
+// te vdancy poluwsd sswl aqxq
+
+// with 5 words
+Randex.v({ words: 5 });
+// or:
+Randex.sentence(5);
+// wyfb hnhtl ptn shemiukme poyyjtr
+
+// with words range
+Randex.sentence({ words: [3, 6] });
+// or:
+Randex.sentence([3, 6]);
+// nfob xcwg tmhfu hiqonw
+
+// with french alphabet
+Randex.sentence({ alphabet: "french" });
+// or:
+Randex.sentence("french");
+// æeâoô déèbfûûæ aôç udôûsèqpa ygyïœùuè oê
+```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|words|[RandexNumberRange](#randexnumberrange) | A number or range of words. Default: [2,9] |
+|alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
+
+
+## sentence
+
+Randoms a sentence.
+
+```ts
+import Randex from "randex";
+
+// default word range is from 3 to 15
+Randex.sentence();
+// Gpgowb te vdancy poluwsd sswl aqxq.
+
+// with 5 words
+Randex.sentence({ words: 5 });
+// or:
+Randex.sentence(5);
+// Xja wyfbhnhtl ptn shemiukme poyyjtr.
+
+// with words range
+Randex.sentence({ words: [3, 6] });
+// or:
+Randex.sentence([3, 6]);
+// Vg nfobxcwg tmhfu hiqonw.
+
+// with french alphabet
+Randex.sentence({ alphabet: "french" });
+// or:
+Randex.sentence("french");
+// Êid æeâoô déèbfûûæ aôç udôûsèqpa ygyïœùuè oê rmânacgwnc kuàq qêœççzœx iolîœsqàu aùàrpëhuâh rèèfhmæ klltu.
+```
+
+Options:
+| Name | Type| Description|
+| ------------------------ | ---- |------------ |
+|words|[RandexNumberRange](#randexnumberrange) | A number or range of words. Default: [3,15] |
 |alphabet|[RandexAlphabet](#randexalphabet) | Defined alphabet. Default: `english` |
 
 
@@ -412,6 +450,9 @@ import Randex from "randex";
 
 // Generates three words with english alphabet.
 Randex.many(3).word("english");
+
+// Generates seven phrases with english alphabet.
+Randex.many(7).phrase("english");
 
 // Generates five sentences with french alphabet.
 Randex.many(5).sentence("french");
@@ -520,7 +561,7 @@ Randex.random(
 
 ## Types
 
-### RandexRange
+### RandexNumberRange
 
 Possible types:
 

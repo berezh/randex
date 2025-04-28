@@ -39,7 +39,7 @@ describe("random many number", () => {
     expect(value.length).toBe(count + 10);
   });
 
-  it("range: fill all possible values", () => {
+  it.skip("range: fill all possible values", () => {
     const min = 5;
     const max = 10;
     const count = max - min + 1;

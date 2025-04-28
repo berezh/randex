@@ -1,6 +1,6 @@
-import { RandexRange } from "./base";
+import { RandexNumberRange } from "./base";
 
 export interface RandexRangeOptions {
   range: string;
-  length: RandexRange;
+  length: RandexNumberRange;
 }

@@ -1,5 +1,5 @@
 import { TestUtil } from "./test-util";
-import { RandexRange, RandexSet } from "../interfaces";
+import { RandexNumberRange, RandexSet } from "../interfaces";
 import { Randex } from "../custom";
 
 describe("random params", () => {
@@ -25,7 +25,7 @@ describe("random params", () => {
 
   it("single: array, length", () => {
     const set: RandexSet = ["number", "english"];
-    const length: RandexRange = 3;
+    const length: RandexNumberRange = 3;
 
     const result1 = Randex.random({ set, length });
     const result2 = Randex.random([set, length]);
@@ -36,7 +36,7 @@ describe("random params", () => {
 
   it("single: array, length as array", () => {
     const set: RandexSet = ["number", "english"];
-    const length: RandexRange = [1, 4];
+    const length: RandexNumberRange = [1, 4];
 
     const result1 = Randex.random({ set, length });
     const result2 = Randex.random([set, length]);
@@ -58,7 +58,7 @@ describe("random params", () => {
 
   it("array 2 (length)", () => {
     const set: RandexSet = "english";
-    const length: RandexRange = 3;
+    const length: RandexNumberRange = 3;
     const result1 = Randex.random({ set, length });
     const result2 = Randex.random([set, length]);
     TestUtil.testInSet(result1, set, length);
@@ -68,7 +68,7 @@ describe("random params", () => {
   it("array 3", () => {
     const set: RandexSet = "number";
     const range = "abcdefghijklmnopqrstuvwxyz";
-    const length: RandexRange = 3;
+    const length: RandexNumberRange = 3;
 
     const result1 = Randex.random({ set, charRange: range, length });
     const result2 = Randex.random([set, range, length]);

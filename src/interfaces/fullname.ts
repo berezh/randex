@@ -1,7 +1,7 @@
-import { RandexAlphabet, RandexRange } from "./base";
+import { RandexAlphabet, RandexNumberRange } from "./base";
 
 export interface RandexFullNameOptions {
   alphabet?: RandexAlphabet;
-  firstLength?: RandexRange;
-  secondLength?: RandexRange;
+  firstLength?: RandexNumberRange;
+  secondLength?: RandexNumberRange;
 }
