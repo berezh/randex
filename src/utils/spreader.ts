@@ -1,21 +1,21 @@
 import { RandexSetUtil } from "../basic/set";
 
-export class RandexPicker {
-  private readonly _items: any[];
+export class RandexSpreader<TItem = any> {
+  private readonly _items: TItem[];
 
-  private _tempItems: any[];
+  private _tempItems: TItem[];
 
-  constructor(public readonly items: any[] = []) {
+  constructor(public readonly items: TItem[] = []) {
     this._items = items;
     this._tempItems = [...items];
   }
 
-  public pick(count = 1) {
+  public spread(count = 1) {
     if (!this._items.length || count <= 0) {
       return [];
     }
 
-    const result: any[] = [];
+    const result: TItem[] = [];
 
     for (let i = 0; i < count; i++) {
       if (!this._tempItems.length) {
