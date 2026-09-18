@@ -35,6 +35,7 @@ Many
 
 Generic Type:
 - [array](#array)
+- [RandexSpreader](#randexspreader)
 
 Deeps:
 
@@ -473,6 +474,35 @@ Randex.array([1, 2, 3, 4], 2);
 // [2, 4]
 Randex.array(["1", "2", "3", "4"], 2);
 // ["1", "3"]
+```
+
+## RandexSpreader
+
+Generates random values from an array without replacement until every item has
+been returned. The internal pool is then refilled automatically, so the
+spreader can be reused for as many values as needed.
+
+```ts
+import { RandexSpreader } from "randex";
+
+const spreader = new RandexSpreader(["red", "green", "blue"]);
+
+// Each item is returned once before the pool is refilled.
+spreader.spread(3);
+// ["green", "red", "blue"]
+
+// The next call continues from the current pool.
+spreader.spread(2);
+// ["red", "green"]
+```
+
+`RandexSpreader` supports any item type. An empty array or a non-positive count
+returns an empty array.
+
+```ts
+const numbers = new RandexSpreader<number>([1, 2, 3]);
+numbers.spread(5);
+// [2, 1, 3, 1, 2]
 ```
 
 
