@@ -35,6 +35,7 @@ Many
 
 Generic Type:
 - [array](#array)
+- [spread](#spread)
 - [RandexSpreader](#randexspreader)
 
 Deeps:
@@ -475,6 +476,25 @@ Randex.array([1, 2, 3, 4], 2);
 Randex.array(["1", "2", "3", "4"], 2);
 // ["1", "3"]
 ```
+
+## spread
+
+`Randex.spread(array, count)` returns a new array containing the requested
+number of randomly selected items. Items are selected without replacement
+until the source array is exhausted. If `count` is greater than the source
+array length, the selection pool is refilled automatically.
+
+```ts
+import Randex from "randex";
+
+Randex.spread(["red", "green", "blue"], 5);
+// ["green", "red", "blue", "red", "green"]
+```
+
+The method returns an empty array when the source array is empty or when
+`count` is zero or negative. Each call starts with a new selection pool. Use
+[`RandexSpreader`](#randexspreader) when the pool should continue between
+multiple calls.
 
 ## RandexSpreader
 

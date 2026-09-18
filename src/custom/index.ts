@@ -1,4 +1,5 @@
 import { RandexNumberRange } from "../interfaces";
+import { RandexSpreader } from "../utils";
 import { randexBool } from "./bool";
 import { randexEmail } from "./email";
 import { randexFileName } from "./filenameX";
@@ -73,5 +74,10 @@ export class Randex {
 
   public static many(count: RandexNumberRange) {
     return { word: randexManyWord(count), phrase: randexManyPhrase(count), sentence: randexManySentence(count), number: randexManyNumber(count) };
+  }
+
+  public static spread<TItem>(array: TItem[], count: number): TItem[] {
+    const picker = new RandexSpreader(array);
+    return picker.spread(count);
   }
 }
