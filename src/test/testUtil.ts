@@ -69,7 +69,9 @@ export class TestUtil {
   public static isEmailValid(email: string) {
     return String(email)
       .toLowerCase()
-      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
   }
 
   public static isUsernameValid(email: string) {
@@ -84,7 +86,7 @@ export class TestUtil {
 
   public static isWordValid(text: string, length: RandexNumberRange = DEFAULT_WORD_RANGE) {
     const l = TestUtil.getLength(length);
-    return String(text).match(new RegExp(`\^[a-z]\{${l}\}\$`));
+    return String(text).match(new RegExp(`^[a-z]{${l}}$`));
   }
 
   public static isSentenceValid(text: string, length: RandexNumberRange = DEFAULT_SENTENCE_RANGE) {
@@ -111,7 +113,7 @@ export class TestUtil {
 
   public static isUpperCharValid(value: string, length: RandexNumberRange = 1) {
     const l = TestUtil.getLength(length);
-    return String(value).match(new RegExp(`\^[A-Z]\{${l}\}\$`));
+    return String(value).match(new RegExp(`^[A-Z]{${l}}$`));
   }
 
   public static isLowerCharValid(value: string, length: RandexNumberRange = 1) {
@@ -126,7 +128,7 @@ export class TestUtil {
   public static isFileNameValid(email: string) {
     return String(email)
       .toLowerCase()
-      .match(/^[a-z0-9_\.]{2,}$/);
+      .match(/^[a-z0-9_.]{2,}$/);
   }
 
   public static inNumberRange(value: number, range: [number, number]) {

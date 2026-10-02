@@ -1,4 +1,12 @@
-import { RandexCase, RandexAlphabet, RandexItemSet, RandexContentArrayOptions, RandexSet, RandexSingleSet, RandexNumberRange } from "../interfaces";
+import {
+  RandexCase,
+  RandexAlphabet,
+  RandexItemSet,
+  RandexContentArrayOptions,
+  RandexSet,
+  RandexSingleSet,
+  RandexNumberRange,
+} from "../interfaces";
 
 export class RandexTypeParser {
   private static inRange(value: number, range: [number, number]) {

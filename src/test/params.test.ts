@@ -1,4 +1,4 @@
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 import { RandexNumberRange, RandexSet } from "../interfaces";
 import { Randex } from "../custom";
 

@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "esnext",
         "module": "commonjs",
         "declaration": true,
         "outDir": "./lib",
@@ -11,7 +11,8 @@
         "noImplicitAny": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "types": ["jest"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "**/__tests__/*"]

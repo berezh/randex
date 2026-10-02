@@ -1,5 +1,5 @@
 import { Randex } from "../custom";
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 
 describe("randomFullName", () => {
   it("simple", () => {

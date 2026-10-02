@@ -72,8 +72,29 @@ export class Randex {
 
   public static phrase = randexPhrase;
 
+  public static shuffle<T>(array: T[]) {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
+
   public static many(count: RandexNumberRange) {
-    return { word: randexManyWord(count), phrase: randexManyPhrase(count), sentence: randexManySentence(count), number: randexManyNumber(count) };
+    return {
+      word: randexManyWord(count),
+      phrase: randexManyPhrase(count),
+      sentence: randexManySentence(count),
+      number: randexManyNumber(count),
+    };
   }
 
   public static spread<TItem>(array: TItem[], count: number): TItem[] {

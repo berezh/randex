@@ -1,7 +1,7 @@
 import { RandexSetUtil } from "../basic/set";
 import { Randex } from "../custom";
 import { RandexNumberRange } from "../interfaces";
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 
 const r = RandexSetUtil;
 
@@ -11,7 +11,13 @@ function splitEmail(email: string) {
   return [prefix, domain, lowDomain, hightDomain];
 }
 
-function testEmail(options: { email: string; prefixLength?: RandexNumberRange; hightDomainLength?: RandexNumberRange; lowDomainLength?: RandexNumberRange; domain?: string }) {
+function testEmail(options: {
+  email: string;
+  prefixLength?: RandexNumberRange;
+  hightDomainLength?: RandexNumberRange;
+  lowDomainLength?: RandexNumberRange;
+  domain?: string;
+}) {
   const {
     email,
     prefixLength = r.defaultEmailPrefixLength,

@@ -5,7 +5,11 @@ import { randexRandom } from "./random";
 
 export function randexEmail(options?: RandexEmailOptions): string;
 
-export function randexEmail(prefixLength: RandexNumberRange, lowDomainLength?: RandexNumberRange, hightDomainLength?: RandexNumberRange): string;
+export function randexEmail(
+  prefixLength: RandexNumberRange,
+  lowDomainLength?: RandexNumberRange,
+  hightDomainLength?: RandexNumberRange
+): string;
 
 export function randexEmail(domain: string): string;
 

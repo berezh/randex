@@ -1,7 +1,7 @@
 import { DEFAULT_WORD_RANGE } from "../basic/const";
 import { Randex } from "../custom";
 import { RandexNumberRange } from "../interfaces";
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 
 describe("word", () => {
   it("classic", () => {

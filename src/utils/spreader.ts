@@ -10,6 +10,10 @@ export class RandexSpreader<TItem = any> {
     this._tempItems = [...items];
   }
 
+  public get isEmpty() {
+    return this._tempItems.length === 0;
+  }
+
   public spread(count = 1) {
     if (!this._items.length || count <= 0) {
       return [];
@@ -18,7 +22,7 @@ export class RandexSpreader<TItem = any> {
     const result: TItem[] = [];
 
     for (let i = 0; i < count; i++) {
-      if (!this._tempItems.length) {
+      if (this.isEmpty) {
         this._tempItems = [...this._items];
       }
 

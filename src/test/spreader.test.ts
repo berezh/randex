@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { RandexSetUtil } from "../basic/set";
 import { RandexSpreader } from "../utils/spreader";
 

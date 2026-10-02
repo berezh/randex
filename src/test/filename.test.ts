@@ -1,7 +1,7 @@
 import { RandexSetUtil } from "../basic/set";
 import { Randex } from "../custom";
 import { RandexNumberRange } from "../interfaces";
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 
 const r = RandexSetUtil;
 
@@ -13,7 +13,12 @@ function splitFileName(fullFileName: string) {
   return [fileName, extension];
 }
 
-function testFileName(options: { fullFileName: string; fileNameLength?: RandexNumberRange; extensionLength?: RandexNumberRange; extension?: string }) {
+function testFileName(options: {
+  fullFileName: string;
+  fileNameLength?: RandexNumberRange;
+  extensionLength?: RandexNumberRange;
+  extension?: string;
+}) {
   const { fullFileName, fileNameLength = r.defaultFileNameLength, extensionLength = r.defaultExtensionLength, extension } = options;
 
   const [fileName, fileExtension] = splitFileName(fullFileName);

@@ -1,5 +1,5 @@
 import { Randex } from "../custom";
-import { TestUtil } from "./test-util";
+import { TestUtil } from "./testUtil";
 
 function testNumber(max: number) {
   const value = Randex.number(max);

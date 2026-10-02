@@ -91,7 +91,11 @@ export class RandexSetUtil {
     return result;
   }
 
-  public static getLength(reservedChars: number, length: RandexNumberRange | undefined, defaultLength: RandexNumberRange): RandexNumberRange {
+  public static getLength(
+    reservedChars: number,
+    length: RandexNumberRange | undefined,
+    defaultLength: RandexNumberRange
+  ): RandexNumberRange {
     let result = defaultLength;
 
     if (typeof length === "number" && length > reservedChars) {

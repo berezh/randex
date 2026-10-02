@@ -1,6 +1,6 @@
 {
   "name": "randex",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,13 +19,13 @@
   "author": "",
   "license": "ISC",
   "bugs": {},
+  "prettier": "eslint-config-varp/prettier",
   "devDependencies": {
     "@types/jest": "^24.9.1",
-    "eslint-config-varp-common": "^1.0.0",
-    "eslint-plugin-tsc": "^2.0.0",
+    "eslint-config-varp": "^2.16.0",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
-    "typescript": "^4.2.4"
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "random",
