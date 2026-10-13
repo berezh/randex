@@ -1,5 +1,5 @@
 import { RandexNumberRange } from "../interfaces";
-import { RandexSpreader } from "../utils";
+import { RandexFrequencySpread, RandexSpreader } from "../utils";
 import { randexBool } from "./bool";
 import { randexEmail } from "./email";
 import { randexFileName } from "./filenameX";
@@ -99,6 +99,11 @@ export class Randex {
 
   public static spread<TItem>(array: TItem[], count: number): TItem[] {
     const picker = new RandexSpreader(array);
+    return picker.spread(count);
+  }
+
+  public static frequencySpread<TItem>(array: [TItem, number][], count: number): TItem[] {
+    const picker = new RandexFrequencySpread(array);
     return picker.spread(count);
   }
 }
