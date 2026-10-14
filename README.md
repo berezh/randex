@@ -526,40 +526,6 @@ numbers.spread(5);
 // [2, 1, 3, 1, 2]
 ```
 
-
-## RandexFrequencySpread
-
-Accepts an array of `[item, frequency]` tuples. Frequencies are relative weights
-and may be fractional. Each draw is independent, with replacement: an item's
-probability is its frequency divided by the total frequency. There are no
-cycles or guaranteed counts.
-
-```ts
-import { RandexFrequencySpread } from "randex";
-
-const spreader = new RandexFrequencySpread([
-  ["red", 0.5],
-  ["blue", 1],
-]);
-
-spreader.spread(3);
-// Example: ["blue", "blue", "red"]
-// Each draw has a 1/3 chance of red and a 2/3 chance of blue.
-spreader.isEmpty;
-// false
-spreader.spread();
-// Example: ["blue"]
-```
-
-Frequencies must be non-negative finite numbers, and their sum must also be
-finite; invalid frequencies throw a `RangeError`. Zero-frequency items
-are never returned. The input is snapshotted at construction, without expanding
-items into repeated copies.
-
-`spread(count = 1)` returns an array. The count must be a safe integer, otherwise
-a `RangeError` is thrown. Empty pools and non-positive counts return an empty
-array. `isEmpty` is true only when there are no positive-frequency items.
-
 ## Customization
 
 [random](#random) function is very flexible, there are many custom functions can be created.
