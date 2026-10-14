@@ -37,7 +37,7 @@ Generic Type:
 - [array](#array)
 - [spread](#spread)
 - [RandexSpreader](#randexspreader)
-- [RandexFrequencySpread](#randexfrequencyspread)
+- [RandexFrequencySpreader](#randexfrequencyspreader)
 
 Deeps:
 
@@ -525,6 +525,39 @@ const numbers = new RandexSpreader<number>([1, 2, 3]);
 numbers.spread(5);
 // [2, 1, 3, 1, 2]
 ```
+
+## RandexFrequencySpreader
+
+Accepts an array of `[item, frequency]` tuples. Each cycle returns every item
+exactly its frequency number of times, in random order. Calls continue the
+current cycle, which refills automatically when exhausted.
+
+```ts
+import { RandexFrequencySpreader } from "randex";
+
+const spreader = new RandexFrequencySpreader([
+  ["red", 2],
+  ["blue", 1],
+]);
+
+spreader.spread(3);
+// Example: ["red", "blue", "red"]
+spreader.isEmpty;
+// true
+spreader.spread();
+// One item from the next cycle
+```
+
+Frequencies must be non-negative safe integers, and their sum must also be a
+safe integer. Invalid frequencies throw a `RangeError`; zero-frequency items
+are never returned. Inputs are snapshotted without expanding repeated copies.
+
+`spread(count = 1)` returns an array. The count must be a safe integer, otherwise
+a `RangeError` is thrown. Empty pools and non-positive counts return an empty
+array. `isEmpty` indicates whether the current cycle is exhausted.
+
+`Randex.frequencySpread(items, count)` uses the same behavior with a fresh
+cycle for each call.
 
 ## Customization
 

@@ -1,2 +1,2 @@
 export * from "./spreader";
-export * from "./frequencySpread";
+export * from "./frequencySpreader";
