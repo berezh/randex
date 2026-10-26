@@ -31,6 +31,18 @@ export class Randex {
     }
   }
 
+  public static frequencyArrayItem<T>(array: [T, number][]): T {
+    const totalWeight = array.reduce((sum, [, weight]) => sum + weight, 0);
+    let random = Math.random() * totalWeight;
+    for (const [item, weight] of array) {
+      if (random < weight) {
+        return item;
+      }
+      random -= weight;
+    }
+    throw "Array is empty";
+  }
+
   public static array<T>(array: T[], count: number): T[] {
     const result: T[] = [];
 

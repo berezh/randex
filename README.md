@@ -35,6 +35,7 @@ Many
 
 Generic Type:
 - [array](#array)
+- [frequencyArrayItem](#frequencyarrayitem)
 - [spread](#spread)
 - [RandexSpreader](#randexspreader)
 - [RandexFrequencySpreader](#randexfrequencyspreader)
@@ -477,6 +478,25 @@ Randex.array([1, 2, 3, 4], 2);
 Randex.array(["1", "2", "3", "4"], 2);
 // ["1", "3"]
 ```
+
+## frequencyArrayItem
+
+Selects a single item from an array of `[item, weight]` pairs. A higher weight
+makes an item proportionally more likely to be selected. Items with a weight
+of zero are never selected.
+
+```ts
+import Randex from "randex";
+
+Randex.frequencyArrayItem([
+  ["common", 9],
+  ["rare", 1],
+]);
+// "common" or "rare", with a 9:1 relative weight
+```
+
+An empty array or an array containing only zero-weight items throws
+`"Array is empty"`.
 
 ## spread
 
